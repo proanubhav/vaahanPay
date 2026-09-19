@@ -59,27 +59,6 @@ button:focus-visible {
   outline-offset: 5px;
 }
 
-.site-header {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-  min-height: 132px;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 2px;
-
-  svg {
-    width: 32px;
-    height: 32px;
-  }
-}
-
 nav {
   display: flex;
   align-items: center;
@@ -112,11 +91,6 @@ nav {
   &:hover {
     background: #465761;
   }
-}
-
-.header-button {
-  min-height: 49px;
-  padding: 0 29px;
 }
 
 .hero {
@@ -152,7 +126,7 @@ h1 {
   margin: 0;
   color: #929796;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
 }
 
@@ -218,7 +192,7 @@ h1 {
 
     &::placeholder {
       color: #919799;
-      font-weight: 300;
+      font-weight: 400;
     }
   }
 }
@@ -241,7 +215,7 @@ h1 {
 }
 
 .why-us {
-  padding-top: 3rem;
+  padding-top: 0;
   padding-bottom: 4rem;
   scroll-margin-top: 30px;
 
@@ -305,7 +279,7 @@ h1 {
     margin: 0;
     color: #919795;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.5;
   }
 }
@@ -342,30 +316,9 @@ h1 {
     height: 650px;
   }
 
-  .site-header {
-    min-height: 100px;
-    gap: 28px;
-  }
-
-  .brand {
-    font-size: 18px;
-    gap: 7px;
-
-    svg {
-      width: 26px;
-      height: 26px;
-    }
-  }
-
   nav {
     gap: 30px;
     font-size: 16px;
-  }
-
-  .header-button {
-    min-height: 38px;
-    padding: 0 23px;
-    font-size: 11px;
   }
 
   .hero {
@@ -474,31 +427,9 @@ h1 {
 }
 
 @media (max-width: 700px) and (min-width: 601px) {
-  .site-header {
-    min-height: 74px;
-    gap: 27px;
-  }
-
-  .brand {
-    font-size: 14px;
-    gap: 6px;
-    letter-spacing: 1px;
-
-    svg {
-      width: 19px;
-      height: 22px;
-    }
-  }
-
   nav {
     gap: 27px;
     font-size: 10px;
-  }
-
-  .header-button {
-    min-height: 29px;
-    padding: 0 17px;
-    font-size: 9px;
   }
 
   .hero {
@@ -623,30 +554,6 @@ h1 {
     height: 740px;
     top: 100px;
     right: -260px;
-  }
-
-  .site-header {
-    min-height: 86px;
-    gap: 16px;
-    flex-wrap: wrap;
-    padding: 20px 0;
-  }
-
-  .brand {
-    font-size: 18px;
-    gap: 8px;
-
-    svg {
-      width: 25px;
-      height: 25px;
-    }
-  }
-
-  .header-button {
-    margin-left: auto;
-    min-height: 36px;
-    padding: 0 18px;
-    font-size: 10px;
   }
 
   nav {
@@ -1970,11 +1877,17 @@ h1 {
   }
 }
 
+.mobility-section {
+  background:
+    radial-gradient(at 12% 35%, #d6f8ec, transparent 55%),
+    radial-gradient(at 88% 45%, #dff4f2, transparent 55%) #fff;
+}
+
 .mobility-panel {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #fff;
+  background: transparent;
   padding-top: 1.5rem;
 }
 
@@ -2201,6 +2114,36 @@ h1 {
     width: 35px;
     height: 35px;
   }
+}
+
+.vehicle-tile-taxi {
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vehicle-tile-van {
+  top: 50%;
+  left: 2%;
+}
+
+.vehicle-tile-auto {
+  top: 50%;
+  right: 2%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .vehicle-tile {
+    animation: vehicle-float 5s ease-in-out infinite alternate;
+
+    &:nth-child(3n + 1) { animation-delay: -2s; }
+    &:nth-child(3n + 2) { animation-delay: -4s; animation-duration: 6s; }
+  }
+}
+
+@keyframes vehicle-float {
+  from { translate: 0 0; }
+  to { translate: 0 -6px; }
 }
 
 .vehicle-tile-small {
@@ -2522,6 +2465,12 @@ h1 {
   .vehicle-tile-car,
   .vehicle-tile-bike {
     top: 25px;
+  }
+
+  .vehicle-tile-van,
+  .vehicle-tile-auto {
+    top: auto;
+    bottom: 65px;
   }
 
   .vehicle-tile-bus,
