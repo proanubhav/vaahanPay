@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+// Angular Material 3 theme, defined with the current (non-deprecated)
+// `mat.theme()` system-variables API. See
+// https://material.angular.dev/guide/theming
+@mixin material-theme() {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: 'Google Sans',
+      density: 0,
+    )
+  );
+}

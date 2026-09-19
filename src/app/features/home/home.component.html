@@ -1,0 +1,808 @@
+<section class="mobility-section" aria-labelledby="mobility-title">
+    <div class="container">
+        <svg class="art-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <symbol id="vehicle-car" viewBox="0 0 48 48">
+                    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="m9 22 5-11h20l5 11m-30 0h30l3 6v9H6v-9Zm6-11-3 11m21-11 3 11M6 37v4h7v-4m22 0v4h7v-4M4 20h5m30 0h5" />
+                        <path d="M12 28h6m12 0h6m-16 5h8" />
+                    </g>
+                </symbol>
+                <symbol id="vehicle-bike" viewBox="0 0 48 48">
+                    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="10" cy="33" r="7" />
+                        <circle cx="38" cy="33" r="7" />
+                        <path d="m10 33 9-15 8 15H10m17 0 8-18 3 18M17 18h-4m4-4h8m-6 4 15 3m-4-12h6l3 8" />
+                    </g>
+                </symbol>
+                <symbol id="vehicle-bus" viewBox="0 0 48 48">
+                    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="10" y="6" width="28" height="34" rx="6" />
+                        <path
+                            d="M10 14h28M10 26h28M24 14v12M15 40v3m18-3v3M6 17v9m36-9v9M18 10h12M16 32h3m10 0h3M19 37h10" />
+                    </g>
+                </symbol>
+                <symbol id="vehicle-truck" viewBox="0 0 48 48">
+                    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 12h24v23H4Zm24 7h9l7 10v6H28m3-12h5l5 7H31ZM4 29h24" />
+                        <circle cx="12" cy="36" r="5" fill="var(--vehicle-tile, white)" />
+                        <circle cx="36" cy="36" r="5" fill="var(--vehicle-tile, white)" />
+                    </g>
+                </symbol>
+                <symbol id="vehicle-scooter" viewBox="0 0 48 48">
+                    <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="10" cy="36" r="6" />
+                        <circle cx="38" cy="36" r="6" />
+                        <path d="M10 36h18c7-1 7-12 3-20l-4-6h7m-3 6h7v6h-4M9 29l4-8h11v7l-6 8M10 20h16" />
+                    </g>
+                </symbol>
+            </defs>
+        </svg>
+
+        <div class="mobility-panel">
+            <div class="mobility-header">
+                <a class="mobility-brand" href="#top" aria-label="VaahanPay home">
+                    <span class="mobility-brand-mark" aria-hidden="true"><svg>
+                            <use href="#vehicle-car" />
+                        </svg></span>
+                    <span>VaahanPay<small>Made for your journey</small></span>
+                </a>
+                <nav class="mobility-nav" aria-label="Vehicle community navigation">
+                    <a href="#top">Home</a>
+                    <a href="#why-us">Features</a>
+                    <a href="#subscribe">Plans</a>
+                    <a href="#faq-title">FAQ</a>
+                </nav>
+                <a class="mobility-cta mobility-trial" href="#subscribe">Free trial</a>
+            </div>
+
+            <div class="mobility-hero">
+                <div class="vehicle-orbit" aria-hidden="true">
+                    <span class="vehicle-tile vehicle-tile-car"><svg>
+                            <use href="#vehicle-car" />
+                        </svg></span>
+                    <span class="vehicle-tile vehicle-tile-bike"><svg>
+                            <use href="#vehicle-bike" />
+                        </svg></span>
+                    <span class="vehicle-tile vehicle-tile-bus"><svg>
+                            <use href="#vehicle-bus" />
+                        </svg></span>
+                    <span class="vehicle-tile vehicle-tile-truck"><svg>
+                            <use href="#vehicle-truck" />
+                        </svg></span>
+                    <span class="vehicle-tile vehicle-tile-small vehicle-tile-scooter"><svg>
+                            <use href="#vehicle-scooter" />
+                        </svg></span>
+                    <span class="vehicle-tile vehicle-tile-small vehicle-tile-cycle"><svg>
+                            <use href="#vehicle-bike" />
+                        </svg></span>
+                    <span class="vehicle-tile vehicle-tile-small vehicle-tile-minibus"><svg>
+                            <use href="#vehicle-bus" />
+                        </svg></span>
+                    <span class="vehicle-tile vehicle-tile-small vehicle-tile-mini-car"><svg>
+                            <use href="#vehicle-car" />
+                        </svg></span>
+                </div>
+                <div class="mobility-hero-copy">
+                    <h2 id="mobility-title">A smarter way to move.<br />For every kind of journey.</h2>
+                    <p>
+                        From your daily commute to the open road,<br />connect with people who keep you
+                        moving.
+                    </p>
+                    <div class="vehicle-tracker">
+                        <form class="vehicle-tracker-form" (submit)="$event.preventDefault()">
+                            <label for="vehicle-number">Enter your vehicle number</label>
+                            <div class="vehicle-tracker-controls">
+                                <div class="vehicle-number-field">
+                                    <svg aria-hidden="true"><use href="#vehicle-car" /></svg>
+                                    <input
+                                        id="vehicle-number"
+                                        name="vehicleNumber"
+                                        type="text"
+                                        placeholder="DL 01 AB 1234"
+                                        aria-describedby="vehicle-number-hint"
+                                        autocomplete="off"
+                                        autocapitalize="characters"
+                                        spellcheck="false"
+                                        maxlength="20"
+                                        pattern=".*\S.*"
+                                        required
+                                    />
+                                </div>
+                                <button class="vehicle-tracker-submit" type="submit">
+                                    Submit <span aria-hidden="true">→</span>
+                                </button>
+                            </div>
+                            <small id="vehicle-number-hint">Use the registration number on your number plate.</small>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="representatives" id="representatives">
+                <div class="mobility-arcs" aria-hidden="true"></div>
+                <h3>Meet our representatives!</h3>
+                <div class="representative-grid">
+                    <article class="representative-card">
+                        <div class="representative-portrait portrait-eva">
+                            <svg class="avatar avatar-julia" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                        </div>
+                        <h4>Eva May</h4>
+                        <div class="representative-specialty">
+                            <svg aria-hidden="true">
+                                <use href="#vehicle-car" />
+                            </svg>
+                            <div><strong>Cars &amp; EVs</strong><span>Your everyday drive</span></div>
+                        </div>
+                    </article>
+                    <article class="representative-card">
+                        <div class="representative-portrait portrait-mike">
+                            <svg class="avatar avatar-farhan" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                        </div>
+                        <h4>Mike Young</h4>
+                        <div class="representative-specialty">
+                            <svg aria-hidden="true">
+                                <use href="#vehicle-bike" />
+                            </svg>
+                            <div><strong>Two-wheelers</strong><span>Find your next ride</span></div>
+                        </div>
+                    </article>
+                    <article class="representative-card">
+                        <div class="representative-portrait portrait-steve">
+                            <svg class="avatar" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                        </div>
+                        <h4>Steve Simpson</h4>
+                        <div class="representative-specialty">
+                            <svg aria-hidden="true">
+                                <use href="#vehicle-truck" />
+                            </svg>
+                            <div><strong>Commercial vehicles</strong><span>Keep business moving</span></div>
+                        </div>
+                    </article>
+                    <article class="representative-card">
+                        <div class="representative-portrait portrait-tamara">
+                            <svg class="avatar avatar-sojon" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                        </div>
+                        <h4>Tamara Blue</h4>
+                        <div class="representative-specialty">
+                            <svg aria-hidden="true">
+                                <use href="#vehicle-bus" />
+                            </svg>
+                            <div><strong>Travel &amp; transit</strong><span>Go further, together</span></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="home-page" id="top">
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">#1 Investing app</p>
+                <h1 id="hero-title">Every Spending<br />Counts. Invest It.</h1>
+                <p class="hero-description">
+                    Start investing today. Don’t rob your future. Spend,<br class="desktop-break" />
+                    save and manage your money, all in one place. We<br class="desktop-break" />
+                    are the #1 most trusted investing app worldwide.
+                </p>
+
+                <div class="trust-badges" aria-label="Security and privacy">
+                    <span class="trust-badge">
+                        <svg viewBox="0 0 36 38" aria-hidden="true">
+                            <path d="M1 1h23v24H1Z" fill="#00cfa0" />
+                            <path d="m19 7 14 5v10c0 7-9 13-14 15C14 35 5 29 5 22V12Z" fill="#303e49" />
+                            <path d="m19 12 10 3v7c0 5-6 10-10 12-4-2-10-7-10-12v-7Z" fill="none" stroke="#d3ede5" />
+                            <path d="m13 22 4 4 8-9" fill="none" stroke="#00cfa0" stroke-width="2" />
+                        </svg>
+                        Security
+                    </span>
+                    <span class="trust-badge">
+                        <svg viewBox="0 0 36 38" aria-hidden="true">
+                            <path d="M1 1h23v24H1Z" fill="#00cfa0" />
+                            <path d="M10 24v-7a11 11 0 0 1 22 0v7l4 8-10-1-3 6-7-7h-6Z" fill="#303e49" />
+                            <path d="M15 17a5 5 0 1 1 7 5v4m0 3v2" fill="none" stroke="#d3ede5" stroke-width="1.5" />
+                        </svg>
+                        Privacy
+                    </span>
+                </div>
+
+                <div class="subscribe" id="subscribe">
+                    <label class="email-field">
+                        <svg viewBox="0 0 24 20" aria-hidden="true">
+                            <path d="M2 3h20v14H2Z" fill="currentColor" />
+                            <path d="m2 4 10 8L22 4M2 17l7-7m13 7-7-7" fill="none" stroke="white" />
+                        </svg>
+                        <span class="visually-hidden">Email address</span>
+                        <input type="email" name="email" placeholder="Enter Email..." autocomplete="email" />
+                    </label>
+                    <button class="button subscribe-button" type="button">Subscribe</button>
+                </div>
+            </div>
+
+            <div class="hero-art">
+                <svg class="investing-illustration" viewBox="0 0 500 470" role="img"
+                    aria-labelledby="illustration-title">
+                    <title id="illustration-title">
+                        An investor in a green shirt holding an oversized bank card
+                    </title>
+                    <defs>
+                        <pattern id="seat-pattern" width="100" height="110" patternUnits="userSpaceOnUse">
+                            <path
+                                d="M-15 10C15-15 48 2 35 20S-2 32 9 51s40 11 39 33-31 32-39 13M62-10c-16 30 35 26 29 48S50 59 60 81s45 6 44 35M24 66c-8-18 19-28 23-12S30 82 24 66Z"
+                                fill="none" stroke="#e4edeb" stroke-width="2" />
+                        </pattern>
+                    </defs>
+                    <g stroke="#34424c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <g transform="translate(130 129) rotate(-46)">
+                            <rect x="-100" y="-68" width="205" height="130" rx="12" fill="#dce8e4" stroke="none" />
+                            <path d="M-100-48C-32-68-4-33 37 19s57 39 68 39v-7H-100Z" fill="#bfceca" stroke="none" />
+                            <path d="M-100-48C-32-68-4-33 37 19s57 39 68 39" fill="none" />
+                            <rect x="-84" y="-37" width="29" height="22" rx="2" fill="#34424c" />
+                            <path d="M-75-37v22m10-22v22m-19-15h29m-29 8h29" stroke="#c7d8d3" stroke-width="1" />
+                            <circle cx="83" cy="-49" r="8" fill="#34424c" stroke="none" />
+                            <circle cx="91" cy="-49" r="8" fill="#93aaa6" stroke="none" />
+                            <path d="M88-56a8 8 0 0 0 0 14" fill="none" stroke="#f0f6f3" stroke-width="2" />
+                            <rect x="-85" y="31" width="45" height="10" rx="5" fill="none" />
+                            <rect x="-29" y="31" width="45" height="10" rx="5" fill="none" />
+                            <rect x="30" y="15" width="54" height="6" rx="3" fill="none" />
+                            <rect x="30" y="29" width="64" height="6" rx="3" fill="none" />
+                            <path d="M30 45h48" fill="none" />
+                        </g>
+                        <path d="m179 297-105 99 39 39 117-90" fill="#dce8e4" />
+                        <path d="m75 394-17 17-16-1c-10-1-13 3-6 10l43 37 35-23Z" fill="#00cea0" stroke="none" />
+                        <path d="m216 413 2 26-12 9c-4 3-7 9 2 9h56l-2-44Z" fill="#00cea0" stroke="none" />
+                        <path d="M292 259h-89c-24 0-38 14-34 40l31 127h66l-29-103h81" fill="white" />
+                        <path d="m237 321 28 137h174l-28-137Z" fill="#34424c" />
+                        <path d="m237 321 28 137h174l-28-137Z" fill="url(#seat-pattern)" stroke="none" />
+                        <path d="m318 194-6-33c-2-10 5-17 14-13l18 8-6 8 4 30" fill="white" />
+                        <path d="m321 158 6 3-3 4 6 3m-6 7 10 2m-8 1 4 11" fill="none" />
+                        <circle cx="327" cy="156" r="1.5" fill="#34424c" stroke="none" />
+                        <path
+                            d="M327 144c-1-13 19-9 17-22-2-16 22-8 17-26-6-24 25-32 35-14 12 24-10 39-26 32-2 17-17 13-18 23-2 11-14 4-18 13"
+                            fill="#34424c" stroke="none" />
+                        <path d="m176 156-1-12c-1-9-7-11-10-4l-1 10c-12-5-21 7-22 15-2 7 4 15 12 20" fill="white" />
+                        <path
+                            d="m179 151 64 41h121c14 0 21 6 26 22l27 102-47 12-25-93 6 25h-54v-21h-59c-9 0-14-3-23-8l-76-47Z"
+                            fill="#00cfa0" />
+                        <path d="m289 208-6 15c-2 7 3 13 14 16m48-16 5 19" fill="none" />
+                        <path
+                            d="m372 326 5 28c1 10 8 11 9 3l-1-9 6 20c3 8 10 5 8-3l-4-20 9 14c5 7 10 3 7-4l-7-17 8 7c5 4 10 0 6-6l-5-23Z"
+                            fill="white" />
+                        <g fill="#f9fffc">
+                            <path d="M137 458c-25-24-41-43-31-49s26 27 31 49Z" />
+                            <path d="M141 458c-13-29-26-72-17-78s21 43 17 78Z" fill="#34424c" />
+                            <path d="M147 458c-7-41-1-77 10-80s-1 43-10 80Z" />
+                            <path d="M149 458c10-29 22-59 32-56s-14 38-32 56Z" />
+                            <path d="m141 458-17-71m22 68 11-68m-8 67 27-47" fill="none" stroke="#a5b8b1" />
+                        </g>
+                        <path d="M18 458h474" fill="none" />
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <section class="why-us" id="why-us" aria-labelledby="why-title">
+            <h2 id="why-title">Why Us</h2>
+            <div class="feature-grid">
+                <svg class="connecting-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
+                    <path
+                        d="M-20 60C50 15 85 130 9 134S33 181 117 152M284 47C354 6 398 9 471 69M661 145C735 152 787 141 843 122M1010 31c-65-27-24 91 8 40s-2-77-81-53M1044 20c41-9 65-4 90 16" />
+                </svg>
+
+                <article class="feature-card" id="trusted">
+                    <svg class="feature-icon pig-icon" viewBox="0 0 150 135" aria-hidden="true">
+                        <g stroke="#34424c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M37 76C15 79 17 49 28 61s-9 16-19 7" fill="none" />
+                            <path
+                                d="M34 96c-13-30 3-55 36-55 11 0 18 1 25 4 8-12 20-13 20-13v31l14 5v28l-17 4-4 22H92v-7H67v7H50l-3-18Z"
+                                fill="#fff" />
+                            <path d="M57 49c10-4 19-4 29-1" fill="none" />
+                            <circle cx="74" cy="31" r="16" fill="#00cfa0" />
+                            <circle cx="74" cy="31" r="11" fill="none" />
+                            <circle cx="102" cy="75" r="2.5" fill="#34424c" stroke="none" />
+                            <ellipse cx="103" cy="86" rx="7" ry="4" fill="#00cfa0" stroke="none" />
+                            <path d="M21 103h32v7H21Z" fill="#34424c" />
+                            <path d="M15 111h33v7H15Z" fill="#00cfa0" />
+                            <path d="M22 119h32v6H22Z" fill="#34424c" />
+                        </g>
+                    </svg>
+                    <h3>Trusted by many</h3>
+                    <p>Fee-free overdraft up to $100! Get paid up to 2 days early with direct deposit.</p>
+                </article>
+
+                <article class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 150 135" aria-hidden="true">
+                        <g stroke="#34424c" stroke-width="1.7" stroke-linejoin="round">
+                            <rect x="24" y="42" width="104" height="64" rx="5" fill="white" />
+                            <rect x="18" y="36" width="104" height="64" rx="5" fill="#00cfa0" />
+                            <path d="M18 47h104v14H18Z" fill="white" />
+                            <path d="M28 84h29m-29 5h42" stroke="#d9fff1" />
+                            <circle cx="99" cy="87" r="5" fill="#34424c" stroke="none" />
+                            <circle cx="106" cy="87" r="5" fill="#34424c" stroke="#00cfa0" stroke-width=".8" />
+                        </g>
+                    </svg>
+                    <h3>Serious security</h3>
+                    <p>
+                        Chime uses secure processes to protect your information and help prevent unauthorized
+                        use.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <svg class="feature-icon" viewBox="0 0 150 135" aria-hidden="true">
+                        <g stroke="#34424c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="25" y="15" width="75" height="98" rx="4" fill="white" />
+                            <path d="M36 78h42m-42 11h34m-34 11h31" stroke="#00cfa0" />
+                            <circle cx="96" cy="98" r="29" fill="white" />
+                            <circle cx="96" cy="98" r="23" fill="#34424c" />
+                            <path d="m85 98 8 8 14-16" fill="none" stroke="white" stroke-width="4" />
+                        </g>
+                        <text x="63" y="59" text-anchor="middle" fill="#00cfa0" font-size="36" font-weight="700">
+                            $
+                        </text>
+                    </svg>
+                    <h3>Friendly support</h3>
+                    <p>
+                        Have questions? Send a message to our Member Services team in the app or check out the
+                        Help Center.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <div class="travel-sections">
+            <!-- Reusable, self-contained artwork for the community and app previews. -->
+            <svg class="art-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                    <symbol id="traveller-avatar" viewBox="0 0 64 64">
+                        <circle cx="32" cy="32" r="32" fill="var(--avatar-bg, #d6f8ec)" />
+                        <path d="M9 64c0-16 8-24 23-24s23 8 23 24" fill="var(--avatar-shirt, #303d48)" />
+                        <path d="M26 36h12v12c-4 5-9 5-12 0" fill="var(--avatar-skin, #c98f6b)" />
+                        <ellipse cx="32" cy="27" rx="14" ry="18" fill="var(--avatar-skin, #c98f6b)" />
+                        <path d="M18 29C10 9 26 4 34 7c16-2 17 14 11 25l-3-15c-8 6-14 2-19 4l-3 10Z"
+                            fill="var(--avatar-hair, #34424c)" />
+                        <path d="M25 28h2m11 0h2m-9 10c2 2 5 2 7-1" fill="none" stroke="#303d48" stroke-width="1.5"
+                            stroke-linecap="round" />
+                    </symbol>
+                    <symbol id="travel-landscape" viewBox="0 0 180 100">
+                        <path fill="#c5f3e5" d="M0 0h180v100H0Z" />
+                        <circle cx="126" cy="26" r="15" fill="#f0fff6" />
+                        <path d="m0 79 44-58 39 46 32-29 65 49v13H0Z" fill="#70c8ad" />
+                        <path d="m22 100 68-78 44 55 27-26 19 23v26Z" fill="#348776" />
+                        <path d="m90 22-16 19 15-5 12 8Z" fill="#effcf6" />
+                        <path d="M0 90c50-30 109 34 180-9v19H0Z" fill="#214c48" />
+                        <g fill="#303d48">
+                            <path d="m19 50-13 33h9v17h8V83h9Zm132 3-12 32h8v15h8V85h9Zm-13 10-10 24h7v13h6V87h7Z" />
+                        </g>
+                    </symbol>
+                </defs>
+            </svg>
+
+            <section class="community-section" aria-labelledby="community-title">
+                <div class="travel-heading">
+                    <p class="travel-eyebrow">Build up a community</p>
+                    <h2 id="community-title">Join the biggest community of Travellers</h2>
+                    <span class="heading-rule" aria-hidden="true"></span>
+                </div>
+
+                <div class="community-map" role="group" aria-label="A community of travellers from around the world">
+                    <svg class="world-map" viewBox="0 0 1000 470" aria-hidden="true">
+                        <defs>
+                            <pattern id="world-dots" width="7" height="7" patternUnits="userSpaceOnUse">
+                                <circle cx="3" cy="3" r="2" fill="#dce5e1" />
+                            </pattern>
+                        </defs>
+                        <g fill="url(#world-dots)">
+                            <path
+                                d="m92 100 40-25 39 5 20-21 59-8 31-22 28 12-9 25-36 18 18 18-23 28-21 8-7 39-25 15-8 28-24-5-17-35-40-13-11-30-25-10Zm163 96 23 4 11 20 34 6 30 31-13 47-25 29-14 48-19 16-13-28-6-52-24-35-3-40-26-22Zm72-158 43-21 41 8-13 42-36 29-22-13Z" />
+                            <path
+                                d="m426 107 29-27 29 7 11-28 29 10 16 26-6 23-39 9-7 27-37-10-12 18-30-9Zm29 58 58-12 42 28 25 53-24 34-15 49-29 26-22-17-12-61-31-11-28-40Zm100 133 13 10-8 32-14-6Z" />
+                            <path
+                                d="m539 69 41-21 40 12 30-20 58 14 31 17 64-5 25 25 54 7-9 29-38 14-15 38-33 3-12 34-34-9-7 43-27 9-26-45-20 1-20-42-42 8-18-24-27 11-25-34Zm154 182 29 9 15 28 25 3 18 24-41-9-22-22-20-5Zm108-55 11 12-5 24-13-6Zm-9 137 25-25 45 5 31 37-9 33-53 4-29-16-28-7Zm110 51 12 5-12 27-12 11-5-9Z" />
+                        </g>
+                    </svg>
+                    <svg class="community-route" viewBox="0 0 1100 420" preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M-60 70C58 280 167 30 301 136S444 303 583 159 733 335 846 256 989 195 1160 229"
+                            fill="none" stroke="currentColor" stroke-width="3" />
+                    </svg>
+                    <span class="travel-blob map-blob" aria-hidden="true"></span>
+                    <span class="travel-blob satellite-blob satellite-left" aria-hidden="true"></span>
+                    <span class="travel-blob satellite-blob satellite-right" aria-hidden="true"></span>
+
+                    <div class="map-person person-smith">
+                        <svg class="avatar" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <strong>Smith</strong><span>England</span>
+                    </div>
+                    <div class="map-person person-jessica">
+                        <svg class="avatar avatar-jessica" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <strong>Jessica</strong><span>Egypt</span>
+                    </div>
+                    <div class="map-person person-julia">
+                        <svg class="avatar avatar-julia" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <strong>Julia</strong><span>Poland</span>
+                    </div>
+                    <div class="map-person person-farhan">
+                        <svg class="avatar avatar-farhan" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <strong>Farhan</strong><span>Georgia</span>
+                    </div>
+                    <div class="map-person person-sojon">
+                        <svg class="avatar avatar-sojon" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <strong>Sojon</strong><span>Finland</span>
+                    </div>
+                    <div class="destination-card">
+                        <svg class="destination-photo" viewBox="0 0 180 100" aria-hidden="true">
+                            <use href="#travel-landscape" />
+                        </svg>
+                        <strong>Soleil Hill Spot</strong>
+                        <div class="avatar-stack" aria-label="Three travellers are visiting">
+                            <svg class="avatar" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <svg class="avatar avatar-jessica" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <svg class="avatar avatar-farhan" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="travel-row memories-section" aria-labelledby="memories-title">
+                <div class="photographer-scene">
+                    <svg class="photographer-art" viewBox="0 0 520 550" role="img" aria-labelledby="photographer-title">
+                        <title id="photographer-title">
+                            A traveller with a mint green backpack taking a photograph
+                        </title>
+                        <g fill="none" stroke="#e5eee9" stroke-width="2" stroke-linejoin="round">
+                            <path
+                                d="M9 389V202l69-65 66 66v191M0 205h158M33 388V268h44v120m25-42v-63h25v63M48 221v-25h28v25m40 0v-25h23v25M29 152v-42h24v20M354 377V153l63-66 66 66v224m-139-221h151m-121 14h23v37h-23Zm55 0h23v37h-23ZM374 229h23v37h-23Zm55 0h23v37h-23ZM374 288h23v37h-23Zm55 0h23v37h-23ZM400 99V64h31v38M398 365v-23h39v23" />
+                            <path
+                                d="M4 416c113-16 213-1 287-13s131-3 223 12M12 443c132-17 286 21 481-5M156 213l24-63 21 63m-36-16h28M51 96l12-23 14 23m253-9 11-16 13 16" />
+                        </g>
+                        <ellipse cx="267" cy="488" rx="148" ry="25" fill="#f0f7f3" />
+                        <g stroke="#303d48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m213 324-14 111-14 49h55l28-119 12 121h57l-6-165" fill="#303d48" />
+                            <path
+                                d="m199 469-22 24c-8 10-5 15 9 15h60l-4-39m42 1-3 31c11 7 43 9 66 5 10-2 11-10 1-14l-22-17"
+                                fill="#52635f" />
+                            <path d="m233 147-47 51 10 143c36 20 94 21 136-1l-9-128-36-54" fill="#b8d2c6" />
+                            <path d="m276 143-3 25-24 6-14-32" fill="#d3a483" />
+                            <path d="M238 91c-7 20-6 44 9 58 15 12 34-1 40-23l-6-35" fill="#d3a483" />
+                            <path d="M235 117c-17-30-1-62 22-61 18-5 35 11 32 29l-15 8-9-8-7 17-14-1-1 19Z"
+                                fill="#303d48" />
+                            <path d="m266 110 19 3m-15 11 10 2" fill="none" />
+                            <path d="m282 190 43 45 47-87 24 13-37 107c-5 16-21 20-35 10l-65-57" fill="#b8d2c6" />
+                            <path d="m371 153 1-30 12-13 17 4 4 22-13 24" fill="#d3a483" />
+                            <path d="m309 207 29-75-12-8-28 45-23 20" fill="#b8d2c6" />
+                            <path d="m325 134-8-21 8-18 12-5 10 16-8 26" fill="#d3a483" />
+                            <rect x="304" y="89" width="71" height="46" rx="5" fill="#303d48" />
+                            <path d="M316 89v-9h24v9m35 8h31v33h-31" fill="#52635f" />
+                            <ellipse cx="406" cy="113" rx="10" ry="18" fill="#303d48" />
+                            <ellipse cx="408" cy="113" rx="5" ry="11" fill="#a2d7c7" />
+                            <path d="M314 105h15" stroke="#d6f8ec" />
+                            <path d="M200 159c-34 9-54 36-60 84l-7 80c27 30 64 31 91 7l-2-123c-1-22-8-41-22-48Z"
+                                fill="var(--home-accent)" />
+                            <path d="M150 208c20 12 44 13 67 1l-7-37c-21-18-54 0-60 36Z" fill="#70e5c5" />
+                            <path d="m147 240 61 3-1 66c-21 12-40 9-62-2Z" fill="#00b68d" />
+                            <path d="m159 171-16 157m59-153 17 159m-70-108 66 5m-64 48h52" fill="none" stroke="#286858"
+                                stroke-width="5" />
+                            <path d="m219 174 21 42-6 117m-98-68-12 40 11 9" fill="none" stroke="#303d48"
+                                stroke-width="8" />
+                            <path d="m163 220 11 1v17l-11-1Zm24 2 11 1v17l-11-1Z" fill="#303d48" />
+                            <path d="m224 321 26 5" fill="none" />
+                        </g>
+                    </svg>
+                    <figure class="traveller-quote">
+                        <svg class="avatar avatar-julia" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <blockquote>
+                            Every day is a new day, and you’ll never be able to find happiness if you don’t move
+                            on.
+                        </blockquote>
+                        <figcaption>— Julia, traveller</figcaption>
+                    </figure>
+                </div>
+
+                <div class="travel-copy">
+                    <p class="travel-eyebrow">Get connected</p>
+                    <h2 id="memories-title">Share your memories<br />with your travel buddies</h2>
+                    <span class="heading-rule" aria-hidden="true"></span>
+                    <ol class="connection-steps">
+                        <li>
+                            <span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                                    <path d="M4 4h5v5H4Zm11 0h5v5h-5ZM4 15h5v5H4Zm13-1v7m-3-3h6" />
+                                </svg></span>
+                            <div>
+                                <h3>Sign Up</h3>
+                                <p>
+                                    Make an account and begin to keep yourself connected to travellers everywhere.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                                    <path d="M18 10c0 5-6 11-6 11S6 15 6 10a6 6 0 1 1 12 0Z" />
+                                    <circle cx="12" cy="10" r="2" />
+                                </svg></span>
+                            <div>
+                                <h3>Create Events</h3>
+                                <p>Create an event to gather your fellow travellers and get to know them.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="step-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+                                    <path d="M4 7h4l2-3h4l2 3h4v13H4Z" />
+                                    <circle cx="12" cy="13" r="4" />
+                                </svg></span>
+                            <div>
+                                <h3>Share Memories</h3>
+                                <p>Upload and share the moments you love with your favourite travel people.</p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="travel-row travellers-section" aria-labelledby="travellers-title">
+                <div class="travel-copy">
+                    <p class="travel-eyebrow">Popular travellers</p>
+                    <h2 id="travellers-title">Know the people you’re<br />going to meet</h2>
+                    <span class="heading-rule" aria-hidden="true"></span>
+                    <p class="travel-description">
+                        Have a quick conversation anytime you want with your fellow travellers you’re going to
+                        travel with.
+                    </p>
+                    <div class="avatar-stack fellow-travellers"
+                        aria-label="Meet Smith, Jessica, Farhan, Julia and more travellers">
+                        <svg class="avatar" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <svg class="avatar avatar-jessica" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <svg class="avatar avatar-farhan" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <svg class="avatar avatar-julia" aria-hidden="true">
+                            <use href="#traveller-avatar" />
+                        </svg>
+                        <span aria-hidden="true">+</span>
+                    </div>
+                    <p class="travel-description">
+                        With one simple click you can know who you can have as your travel buddy.
+                    </p>
+                </div>
+
+                <div class="travel-app-scene" role="img"
+                    aria-label="Travel app preview showing a list of popular travellers and a traveller profile">
+                    <span class="travel-blob app-blob" aria-hidden="true"></span>
+                    <span class="scene-scribble" aria-hidden="true"></span>
+                    <div class="phone-preview">
+                        <span class="phone-speaker" aria-hidden="true"></span>
+                        <div class="phone-heading">
+                            <span>‹</span><strong>Popular Travellers</strong><svg class="avatar avatar-jessica"
+                                aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                        </div>
+                        <div class="phone-person">
+                            <svg class="avatar" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <div><strong>Alex Morgan</strong><span>London, England</span></div>
+                            <span class="online-dot"></span>
+                        </div>
+                        <p class="phone-note">
+                            The best journeys bring us together. Where are you heading next?
+                        </p>
+                        <svg class="phone-landscape" viewBox="0 0 180 100" aria-hidden="true">
+                            <use href="#travel-landscape" />
+                        </svg>
+                        <div class="phone-tags"><span>Mountains</span><span>Adventure</span></div>
+                        <div class="phone-person">
+                            <svg class="avatar avatar-farhan" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <div><strong>Farhan Ahmed</strong><span>Tbilisi, Georgia</span></div>
+                            <span class="online-dot"></span>
+                        </div>
+                        <p class="phone-note">Always ready for the next adventure.</p>
+                        <div class="phone-person">
+                            <svg class="avatar avatar-julia" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <div><strong>Julia Wilson</strong><span>Warsaw, Poland</span></div>
+                        </div>
+                        <div class="phone-navigation" aria-hidden="true">
+                            <span>⌂</span><span>♡</span><span>◎</span><span>☰</span>
+                        </div>
+                    </div>
+                    <div class="profile-preview">
+                        <div class="phone-person">
+                            <svg class="avatar avatar-sojon" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <div><strong>Emily Smith</strong><span>Travel enthusiast</span></div>
+                        </div>
+                        <p class="profile-location">↗ &nbsp; Helsinki, Finland</p>
+                        <p class="phone-note">
+                            Collecting moments, meeting new people and taking the scenic route.
+                        </p>
+                        <div class="profile-stats">
+                            <span><strong>124</strong>Travels</span><span><strong>2.8k</strong>Followers</span><span><strong>86</strong>Following</span>
+                        </div>
+                        <strong class="profile-subtitle">Recent memories</strong>
+                        <div class="memory-thumbnails">
+                            <svg viewBox="0 0 180 100" aria-hidden="true">
+                                <use href="#travel-landscape" />
+                            </svg><svg viewBox="0 0 180 100" aria-hidden="true">
+                                <use href="#travel-landscape" />
+                            </svg>
+                        </div>
+                        <div class="profile-footer">
+                            <span>View profile</span><span aria-hidden="true">↗</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="travellers-watermark" aria-hidden="true">Travellers</span>
+            </section>
+        </div>
+        <section class="faq-section" aria-labelledby="faq-title">
+            <h2 id="faq-title">FAQ</h2>
+            <div class="faq-list">
+                <details class="faq-item" open>
+                    <summary>What is Inveto?<span class="faq-toggle" aria-hidden="true"></span></summary>
+                    <p>
+                        Inveto helps people and businesses manage their money in one place. Spend, save and
+                        invest with a simpler everyday experience.
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>
+                        How do I send money to a bank account?<span class="faq-toggle" aria-hidden="true"></span>
+                    </summary>
+                    <p>
+                        Choose your recipient, enter their bank details and the amount you want to send, then
+                        review the payment details before confirming your transfer.
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>
+                        How do I verify my identity?<span class="faq-toggle" aria-hidden="true"></span>
+                    </summary>
+                    <p>
+                        Follow the identity verification steps in your account. You’ll be guided through
+                        providing your details and uploading the required identification documents.
+                    </p>
+                </details>
+                <details class="faq-item" open>
+                    <summary>
+                        What happens when I go over the block limit on my free plan?
+                        <span class="faq-toggle" aria-hidden="true"></span>
+                    </summary>
+                    <p>
+                        You can still read your existing content as usual, but you won’t be able to add new
+                        content. You can delete existing blocks to free up space.
+                    </p>
+                </details>
+            </div>
+        </section>
+
+        <section class="account-banner" aria-labelledby="account-banner-title">
+            <div class="banner-rings" aria-hidden="true"></div>
+            <div class="account-banner-copy">
+                <h2 id="account-banner-title">Join millions of people<br />who already trust us</h2>
+                <p>
+                    Easy and fast international business accounts that save you money wherever you want to use
+                    them.
+                </p>
+                <div class="account-banner-actions">
+                    <a class="account-action account-action-primary" href="#subscribe">Open Account</a>
+                    <button class="account-action account-action-secondary" type="button">Book a demo</button>
+                </div>
+            </div>
+
+            <svg class="payment-illustration" viewBox="0 0 540 340" role="img"
+                aria-labelledby="payment-illustration-title">
+                <title id="payment-illustration-title">
+                    International payment preview with a USD account and an incoming payment of 40 euros
+                </title>
+                <defs>
+                    <filter id="payment-card-shadow" x="-30%" y="-30%" width="160%" height="180%">
+                        <feDropShadow dx="0" dy="12" stdDeviation="13" flood-color="#285b48" flood-opacity=".12" />
+                    </filter>
+                    <clipPath id="payment-uk-flag">
+                        <circle cx="176" cy="83" r="10" />
+                    </clipPath>
+                    <clipPath id="payment-german-flag">
+                        <circle cx="83" cy="274" r="13" />
+                    </clipPath>
+                </defs>
+
+                <rect x="137" y="40" width="360" height="239" rx="24" fill="#246357" />
+                <rect x="137" y="32" width="360" height="239" rx="24" fill="white" filter="url(#payment-card-shadow)" />
+                <g font-family="inherit" fill="#303d48">
+                    <text x="159" y="57" font-size="8" fill="#8c9994">Amount</text>
+                    <rect x="156" y="66" width="322" height="36" rx="8" fill="white" stroke="#edf2ef" />
+                    <g clip-path="url(#payment-uk-flag)">
+                        <path d="M166 73h20v20h-20Z" fill="#365575" />
+                        <path d="m166 73 20 20m0-20-20 20" stroke="white" stroke-width="5" />
+                        <path d="m166 73 20 20m0-20-20 20" stroke="#cb6670" stroke-width="2" />
+                        <path d="M176 73v20m-10-10h20" stroke="white" stroke-width="7" />
+                        <path d="M176 73v20m-10-10h20" stroke="#cb6670" stroke-width="4" />
+                    </g>
+                    <text x="194" y="88" font-size="12" font-weight="700">USD</text>
+                    <path d="m228 81 4 4 4-4" fill="none" stroke="#8c9994" stroke-width="1.5" />
+                    <text x="462" y="89" text-anchor="end" font-size="14" font-weight="700">$600.00</text>
+
+                    <text x="159" y="123" font-size="8" fill="#8c9994">Send to</text>
+                    <text x="319" y="123" font-size="8" fill="#8c9994">Account</text>
+                    <rect x="156" y="132" width="151" height="38" rx="8" fill="white" stroke="#edf2ef" />
+                    <rect x="316" y="132" width="162" height="38" rx="8" fill="white" stroke="#edf2ef" />
+                    <circle cx="174" cy="151" r="10" fill="#d6f8ec" />
+                    <path d="M166 159c1-8 15-8 16 0" fill="#4b7568" />
+                    <ellipse cx="174" cy="148" rx="5" ry="6" fill="#bf987a" />
+                    <path d="M169 148c-3-10 12-11 10 0l-3-5-5 3Z" fill="#303d48" />
+                    <text x="191" y="156" font-size="12" font-weight="700">Evelyn</text>
+                    <path d="m287 149 4 4 4-4" fill="none" stroke="#8c9994" stroke-width="1.5" />
+                    <text x="329" y="156" font-size="11" font-weight="700">•••• •• 9049</text>
+                    <text x="159" y="197" font-size="9" fill="#8c9994">Upgrade your fee-free transfer.</text>
+                    <text x="318" y="197" font-size="9" fill="#246357" font-weight="700">
+                        See exchange rate
+                    </text>
+
+                    <rect x="156" y="216" width="46" height="36" rx="10" fill="#d6f8ec" />
+                    <path d="M170 230h18m-4-4 4 4-4 4m4 5h-18m4-4-4 4 4 4" fill="none" stroke="#246357"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <rect x="212" y="216" width="266" height="36" rx="10" fill="#bcebd3" />
+                    <text x="345" y="239" text-anchor="middle" font-size="12" font-weight="700" fill="#246357">
+                        Send
+                    </text>
+                </g>
+
+                <rect x="55" y="240" width="260" height="70" rx="14" fill="white" filter="url(#payment-card-shadow)" />
+                <g clip-path="url(#payment-german-flag)">
+                    <path d="M70 261h26v9H70Z" fill="#303d48" />
+                    <path d="M70 270h26v9H70Z" fill="#d95760" />
+                    <path d="M70 279h26v9H70Z" fill="#edcc63" />
+                </g>
+                <rect x="116" y="263" width="73" height="9" rx="4.5" fill="#e8eeeb" />
+                <rect x="116" y="280" width="58" height="8" rx="4" fill="#f0f4f2" />
+                <text x="294" y="283" text-anchor="end" fill="#303d48" font-size="21" font-weight="700">
+                    + €40.00
+                </text>
+            </svg>
+        </section>
+    </main>
+</div>

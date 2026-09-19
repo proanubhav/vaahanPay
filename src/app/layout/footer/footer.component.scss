@@ -1,0 +1,13 @@
+@use '../../../styles/variables' as vars;
+
+.app-footer {
+  padding: vars.$spacing-md vars.$spacing-lg;
+  border-top: 1px solid vars.$color-border;
+  text-align: center;
+
+  &__text {
+    margin: 0;
+    font: var(--mat-sys-body-small);
+    color: vars.$color-text-secondary;
+  }
+}

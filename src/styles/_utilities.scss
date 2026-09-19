@@ -1,0 +1,57 @@
+@use 'variables' as vars;
+@use 'mixins' as mix;
+
+.container {
+  @include mix.container;
+}
+
+.flex {
+  display: flex;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1 1 auto;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.text-center {
+  text-align: center;
+}
+
+@each $key, $value in (xs: vars.$spacing-xs, sm: vars.$spacing-sm, md: vars.$spacing-md, lg: vars.$spacing-lg, xl: vars.$spacing-xl) {
+  .gap-#{$key} {
+    gap: $value;
+  }
+  .mt-#{$key} {
+    margin-top: $value;
+  }
+  .mb-#{$key} {
+    margin-bottom: $value;
+  }
+  .p-#{$key} {
+    padding: $value;
+  }
+}

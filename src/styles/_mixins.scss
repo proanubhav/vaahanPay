@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use 'variables' as vars;
+
+/// Applies a media query starting at the given breakpoint key (mobile-first).
+@mixin respond-to($breakpoint) {
+  @if map.has-key(vars.$breakpoints, $breakpoint) {
+    @media (min-width: map.get(vars.$breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown breakpoint `#{$breakpoint}`.";
+  }
+}
+
+@mixin flex($direction: row, $align: stretch, $justify: flex-start, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+@mixin card-surface {
+  background-color: vars.$color-surface;
+  border-radius: vars.$radius-lg;
+  border: 1px solid vars.$color-border;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin container {
+  width: 100%;
+  max-width: vars.$container-max-width;
+  margin-inline: auto;
+  padding-inline: vars.$spacing-lg;
+
+  @media (max-width: map.get(vars.$breakpoints, tablet) - 1) {
+    padding-inline: vars.$spacing-md;
+  }
+}

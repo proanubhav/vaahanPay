@@ -1,0 +1,56 @@
+@use '../../../../styles/variables' as vars;
+
+.stat-card {
+  height: 100%;
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    gap: vars.$spacing-md;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex: none;
+    border-radius: vars.$radius-md;
+    background-color: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+  }
+
+  &__body {
+    min-width: 0;
+  }
+
+  &__label {
+    margin: 0;
+    font: var(--mat-sys-body-medium);
+    color: vars.$color-text-secondary;
+  }
+
+  &__value {
+    margin: vars.$spacing-xs 0;
+    font: var(--mat-sys-headline-small);
+    color: vars.$color-text-primary;
+  }
+
+  &__trend {
+    margin: 0;
+    font: var(--mat-sys-body-small);
+
+    &--up {
+      color: #2e7d32;
+    }
+
+    &--down {
+      color: var(--mat-sys-error);
+    }
+
+    &--neutral {
+      color: vars.$color-text-secondary;
+    }
+  }
+}

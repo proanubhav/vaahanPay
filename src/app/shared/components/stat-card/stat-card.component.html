@@ -1,0 +1,14 @@
+<mat-card class="stat-card" appearance="outlined">
+  <mat-card-content class="stat-card__content">
+    <div class="stat-card__icon">
+      <mat-icon>{{ stat().icon }}</mat-icon>
+    </div>
+    <div class="stat-card__body">
+      <p class="stat-card__label">{{ stat().label }}</p>
+      <p class="stat-card__value">{{ stat().value }}</p>
+      <p class="stat-card__trend" [class]="'stat-card__trend--' + stat().trendDirection">
+        {{ stat().trend }}
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>

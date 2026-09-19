@@ -1,0 +1,52 @@
+// Design tokens shared across the application.
+// Color tokens are sourced from Angular Material's M3 system-level CSS
+// variables so custom SCSS always stays in sync with the theme defined in
+// _material-theme.scss. See https://material.angular.dev/guide/system-variables
+
+// Color
+$color-primary: var(--mat-sys-primary);
+$color-primary-contrast: var(--mat-sys-on-primary);
+$color-secondary: var(--mat-sys-tertiary);
+$color-secondary-contrast: var(--mat-sys-on-tertiary);
+
+$color-background: var(--mat-sys-surface);
+$color-surface: var(--mat-sys-surface-container);
+$color-surface-high: var(--mat-sys-surface-container-high);
+
+$color-text-primary: var(--mat-sys-on-surface);
+$color-text-secondary: var(--mat-sys-on-surface-variant);
+
+$color-border: var(--mat-sys-outline-variant);
+$color-border-strong: var(--mat-sys-outline);
+
+$color-success: #2e7d32;
+$color-warning: #ed6c02;
+$color-error: var(--mat-sys-error);
+
+// Spacing scale
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// Border radius
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 16px;
+$radius-full: 999px;
+
+// App shell layout
+$header-height: 64px;
+$header-height-mobile: 56px;
+$sidebar-width: 260px;
+$container-max-width: 1280px;
+
+// Breakpoints (min-width based, mobile-first)
+$breakpoints: (
+  mobile: 0,
+  tablet: 600px,
+  desktop: 1024px,
+  wide: 1440px,
+);

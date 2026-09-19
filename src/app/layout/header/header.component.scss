@@ -1,0 +1,50 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/mixins' as mix;
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: vars.$header-height-mobile;
+  padding-inline: vars.$spacing-sm;
+
+  @include mix.respond-to(tablet) {
+    height: vars.$header-height;
+    padding-inline: vars.$spacing-md;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-sm;
+    margin-left: vars.$spacing-xs;
+  }
+
+  &__title {
+    font: var(--mat-sys-title-large);
+    display: none;
+
+    @include mix.respond-to(tablet) {
+      display: inline;
+    }
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__menu-header {
+    padding: vars.$spacing-sm vars.$spacing-md;
+  }
+
+  &__menu-name {
+    margin: 0;
+    font: var(--mat-sys-body-medium);
+  }
+
+  &__menu-email {
+    margin: 0;
+    font: var(--mat-sys-body-small);
+    color: vars.$color-text-secondary;
+  }
+}

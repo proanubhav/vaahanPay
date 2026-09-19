@@ -1,0 +1,52 @@
+<mat-toolbar class="app-header" color="primary">
+  <button
+    mat-icon-button
+    type="button"
+    class="app-header__menu-button"
+    aria-label="Toggle navigation menu"
+    (click)="menuToggle.emit()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="app-header__brand">
+    <mat-icon class="app-header__logo">directions_car</mat-icon>
+    <span class="app-header__title">VaahanPay</span>
+  </div>
+
+  <span class="app-header__spacer"></span>
+
+  <button mat-icon-button type="button" aria-label="Notifications">
+    <mat-icon>notifications_none</mat-icon>
+  </button>
+
+  <button
+    mat-icon-button
+    type="button"
+    aria-label="Account menu"
+    [matMenuTriggerFor]="accountMenu"
+  >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <mat-menu #accountMenu="matMenu">
+    <div class="app-header__menu-header">
+      <p class="app-header__menu-name">Guest User</p>
+      <p class="app-header__menu-email">guest&#64;vaahanpay.com</p>
+    </div>
+    <mat-divider />
+    <button mat-menu-item type="button">
+      <mat-icon>person_outline</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item type="button">
+      <mat-icon>settings</mat-icon>
+      <span>Settings</span>
+    </button>
+    <mat-divider />
+    <button mat-menu-item type="button">
+      <mat-icon>logout</mat-icon>
+      <span>Sign out</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

@@ -1,0 +1,30 @@
+@use 'variables' as vars;
+
+// Reusable typographic utility classes built on Material's M3 type scale
+// (see the `font: var(--mat-sys-*)` tokens emitted by mat.theme()).
+
+.page-title {
+  font: var(--mat-sys-headline-medium);
+  color: vars.$color-text-primary;
+  margin: 0 0 vars.$spacing-md;
+}
+
+.section-title {
+  font: var(--mat-sys-title-large);
+  color: vars.$color-text-primary;
+  margin: 0 0 vars.$spacing-sm;
+}
+
+.text-muted {
+  color: vars.$color-text-secondary;
+}
+
+.text-caption {
+  font: var(--mat-sys-body-small);
+  color: vars.$color-text-secondary;
+}
+
+.text-body {
+  font: var(--mat-sys-body-medium);
+  color: vars.$color-text-primary;
+}
