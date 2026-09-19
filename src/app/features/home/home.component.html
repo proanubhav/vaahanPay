@@ -1,3 +1,24 @@
+<div id="top" class="mobility-header-spacer" aria-hidden="true"></div>
+<header #header class="mobility-header-bar" [class.mobility-header-bar--scrolled]="isScrolled()">
+    <div class="container">
+        <div class="mobility-header">
+            <a class="mobility-brand" href="#top" aria-label="VaahanPay home">
+                <span class="mobility-brand-mark" aria-hidden="true"><svg>
+                        <use href="#vehicle-car" />
+                    </svg></span>
+                <span>VaahanPay<small>Made for your journey</small></span>
+            </a>
+            <nav class="mobility-nav" aria-label="Vehicle community navigation">
+                <a href="#top">Home</a>
+                <a href="#why-us">Features</a>
+                <a href="#subscribe">Plans</a>
+                <a href="#faq-title">FAQ</a>
+            </nav>
+            <a class="mobility-cta mobility-trial" href="#subscribe">Free trial</a>
+        </div>
+    </div>
+</header>
+
 <section class="mobility-section" aria-labelledby="mobility-title">
     <div class="container">
         <svg class="art-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -46,21 +67,7 @@
         </svg>
 
         <div class="mobility-panel">
-            <div class="mobility-header">
-                <a class="mobility-brand" href="#top" aria-label="VaahanPay home">
-                    <span class="mobility-brand-mark" aria-hidden="true"><svg>
-                            <use href="#vehicle-car" />
-                        </svg></span>
-                    <span>VaahanPay<small>Made for your journey</small></span>
-                </a>
-                <nav class="mobility-nav" aria-label="Vehicle community navigation">
-                    <a href="#top">Home</a>
-                    <a href="#why-us">Features</a>
-                    <a href="#subscribe">Plans</a>
-                    <a href="#faq-title">FAQ</a>
-                </nav>
-                <a class="mobility-cta mobility-trial" href="#subscribe">Free trial</a>
-            </div>
+
 
             <div class="mobility-hero">
                 <div class="vehicle-orbit" aria-hidden="true">
@@ -100,20 +107,13 @@
                             <label for="vehicle-number">Enter your vehicle number</label>
                             <div class="vehicle-tracker-controls">
                                 <div class="vehicle-number-field">
-                                    <svg aria-hidden="true"><use href="#vehicle-car" /></svg>
-                                    <input
-                                        id="vehicle-number"
-                                        name="vehicleNumber"
-                                        type="text"
-                                        placeholder="DL 01 AB 1234"
-                                        aria-describedby="vehicle-number-hint"
-                                        autocomplete="off"
-                                        autocapitalize="characters"
-                                        spellcheck="false"
-                                        maxlength="20"
-                                        pattern=".*\S.*"
-                                        required
-                                    />
+                                    <svg aria-hidden="true">
+                                        <use href="#vehicle-car" />
+                                    </svg>
+                                    <input id="vehicle-number" name="vehicleNumber" type="text"
+                                        placeholder="DL 01 AB 1234" aria-describedby="vehicle-number-hint"
+                                        autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20"
+                                        pattern=".*\S.*" required />
                                 </div>
                                 <button class="vehicle-tracker-submit" type="submit">
                                     Submit <span aria-hidden="true">→</span>
@@ -127,8 +127,8 @@
 
             <div class="representatives" id="representatives">
                 <div class="mobility-arcs" aria-hidden="true"></div>
-                <h3>Meet our representatives!</h3>
-                <div class="representative-grid">
+                <!-- <h3>Meet our representatives!</h3> -->
+                <!-- <div class="representative-grid">
                     <article class="representative-card">
                         <div class="representative-portrait portrait-eva">
                             <svg class="avatar avatar-julia" aria-hidden="true">
@@ -185,14 +185,85 @@
                             <div><strong>Travel &amp; transit</strong><span>Go further, together</span></div>
                         </div>
                     </article>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 </section>
 
-<div class="home-page" id="top">
 
+<section class="why-us" id="why-us" aria-labelledby="why-title">
+    <div class="container">
+        <h2 id="why-title">Why Us</h2>
+        <div class="feature-grid">
+            <svg class="connecting-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
+                <path
+                    d="M-20 60C50 15 85 130 9 134S33 181 117 152M284 47C354 6 398 9 471 69M661 145C735 152 787 141 843 122M1010 31c-65-27-24 91 8 40s-2-77-81-53M1044 20c41-9 65-4 90 16" />
+            </svg>
+
+            <article class="feature-card" id="trusted">
+                <svg class="feature-icon pig-icon" viewBox="0 0 150 135" aria-hidden="true">
+                    <g stroke="#34424c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M37 76C15 79 17 49 28 61s-9 16-19 7" fill="none" />
+                        <path
+                            d="M34 96c-13-30 3-55 36-55 11 0 18 1 25 4 8-12 20-13 20-13v31l14 5v28l-17 4-4 22H92v-7H67v7H50l-3-18Z"
+                            fill="#fff" />
+                        <path d="M57 49c10-4 19-4 29-1" fill="none" />
+                        <circle cx="74" cy="31" r="16" fill="#00cfa0" />
+                        <circle cx="74" cy="31" r="11" fill="none" />
+                        <circle cx="102" cy="75" r="2.5" fill="#34424c" stroke="none" />
+                        <ellipse cx="103" cy="86" rx="7" ry="4" fill="#00cfa0" stroke="none" />
+                        <path d="M21 103h32v7H21Z" fill="#34424c" />
+                        <path d="M15 111h33v7H15Z" fill="#00cfa0" />
+                        <path d="M22 119h32v6H22Z" fill="#34424c" />
+                    </g>
+                </svg>
+                <h3>Trusted by many</h3>
+                <p>Fee-free overdraft up to $100! Get paid up to 2 days early with direct deposit.</p>
+            </article>
+
+            <article class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 150 135" aria-hidden="true">
+                    <g stroke="#34424c" stroke-width="1.7" stroke-linejoin="round">
+                        <rect x="24" y="42" width="104" height="64" rx="5" fill="white" />
+                        <rect x="18" y="36" width="104" height="64" rx="5" fill="#00cfa0" />
+                        <path d="M18 47h104v14H18Z" fill="white" />
+                        <path d="M28 84h29m-29 5h42" stroke="#d9fff1" />
+                        <circle cx="99" cy="87" r="5" fill="#34424c" stroke="none" />
+                        <circle cx="106" cy="87" r="5" fill="#34424c" stroke="#00cfa0" stroke-width=".8" />
+                    </g>
+                </svg>
+                <h3>Serious security</h3>
+                <p>
+                    Chime uses secure processes to protect your information and help prevent unauthorized
+                    use.
+                </p>
+            </article>
+
+            <article class="feature-card">
+                <svg class="feature-icon" viewBox="0 0 150 135" aria-hidden="true">
+                    <g stroke="#34424c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="25" y="15" width="75" height="98" rx="4" fill="white" />
+                        <path d="M36 78h42m-42 11h34m-34 11h31" stroke="#00cfa0" />
+                        <circle cx="96" cy="98" r="29" fill="white" />
+                        <circle cx="96" cy="98" r="23" fill="#34424c" />
+                        <path d="m85 98 8 8 14-16" fill="none" stroke="white" stroke-width="4" />
+                    </g>
+                    <text x="63" y="59" text-anchor="middle" fill="#00cfa0" font-size="36" font-weight="700">
+                        $
+                    </text>
+                </svg>
+                <h3>Friendly support</h3>
+                <p>
+                    Have questions? Send a message to our Member Services team in the app or check out the
+                    Help Center.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<div class="home-page">
     <main>
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero-copy">
@@ -222,18 +293,6 @@
                         </svg>
                         Privacy
                     </span>
-                </div>
-
-                <div class="subscribe" id="subscribe">
-                    <label class="email-field">
-                        <svg viewBox="0 0 24 20" aria-hidden="true">
-                            <path d="M2 3h20v14H2Z" fill="currentColor" />
-                            <path d="m2 4 10 8L22 4M2 17l7-7m13 7-7-7" fill="none" stroke="white" />
-                        </svg>
-                        <span class="visually-hidden">Email address</span>
-                        <input type="email" name="email" placeholder="Enter Email..." autocomplete="email" />
-                    </label>
-                    <button class="button subscribe-button" type="button">Subscribe</button>
                 </div>
             </div>
 
@@ -296,75 +355,6 @@
                         <path d="M18 458h474" fill="none" />
                     </g>
                 </svg>
-            </div>
-        </section>
-
-        <section class="why-us" id="why-us" aria-labelledby="why-title">
-            <h2 id="why-title">Why Us</h2>
-            <div class="feature-grid">
-                <svg class="connecting-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
-                    <path
-                        d="M-20 60C50 15 85 130 9 134S33 181 117 152M284 47C354 6 398 9 471 69M661 145C735 152 787 141 843 122M1010 31c-65-27-24 91 8 40s-2-77-81-53M1044 20c41-9 65-4 90 16" />
-                </svg>
-
-                <article class="feature-card" id="trusted">
-                    <svg class="feature-icon pig-icon" viewBox="0 0 150 135" aria-hidden="true">
-                        <g stroke="#34424c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M37 76C15 79 17 49 28 61s-9 16-19 7" fill="none" />
-                            <path
-                                d="M34 96c-13-30 3-55 36-55 11 0 18 1 25 4 8-12 20-13 20-13v31l14 5v28l-17 4-4 22H92v-7H67v7H50l-3-18Z"
-                                fill="#fff" />
-                            <path d="M57 49c10-4 19-4 29-1" fill="none" />
-                            <circle cx="74" cy="31" r="16" fill="#00cfa0" />
-                            <circle cx="74" cy="31" r="11" fill="none" />
-                            <circle cx="102" cy="75" r="2.5" fill="#34424c" stroke="none" />
-                            <ellipse cx="103" cy="86" rx="7" ry="4" fill="#00cfa0" stroke="none" />
-                            <path d="M21 103h32v7H21Z" fill="#34424c" />
-                            <path d="M15 111h33v7H15Z" fill="#00cfa0" />
-                            <path d="M22 119h32v6H22Z" fill="#34424c" />
-                        </g>
-                    </svg>
-                    <h3>Trusted by many</h3>
-                    <p>Fee-free overdraft up to $100! Get paid up to 2 days early with direct deposit.</p>
-                </article>
-
-                <article class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 150 135" aria-hidden="true">
-                        <g stroke="#34424c" stroke-width="1.7" stroke-linejoin="round">
-                            <rect x="24" y="42" width="104" height="64" rx="5" fill="white" />
-                            <rect x="18" y="36" width="104" height="64" rx="5" fill="#00cfa0" />
-                            <path d="M18 47h104v14H18Z" fill="white" />
-                            <path d="M28 84h29m-29 5h42" stroke="#d9fff1" />
-                            <circle cx="99" cy="87" r="5" fill="#34424c" stroke="none" />
-                            <circle cx="106" cy="87" r="5" fill="#34424c" stroke="#00cfa0" stroke-width=".8" />
-                        </g>
-                    </svg>
-                    <h3>Serious security</h3>
-                    <p>
-                        Chime uses secure processes to protect your information and help prevent unauthorized
-                        use.
-                    </p>
-                </article>
-
-                <article class="feature-card">
-                    <svg class="feature-icon" viewBox="0 0 150 135" aria-hidden="true">
-                        <g stroke="#34424c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="25" y="15" width="75" height="98" rx="4" fill="white" />
-                            <path d="M36 78h42m-42 11h34m-34 11h31" stroke="#00cfa0" />
-                            <circle cx="96" cy="98" r="29" fill="white" />
-                            <circle cx="96" cy="98" r="23" fill="#34424c" />
-                            <path d="m85 98 8 8 14-16" fill="none" stroke="white" stroke-width="4" />
-                        </g>
-                        <text x="63" y="59" text-anchor="middle" fill="#00cfa0" font-size="36" font-weight="700">
-                            $
-                        </text>
-                    </svg>
-                    <h3>Friendly support</h3>
-                    <p>
-                        Have questions? Send a message to our Member Services team in the app or check out the
-                        Help Center.
-                    </p>
-                </article>
             </div>
         </section>
 
@@ -679,7 +669,7 @@
             </section>
         </div>
         <section class="faq-section" aria-labelledby="faq-title">
-            <h2 id="faq-title">FAQ</h2>
+            <h2 id="faq-title">Frequently Asked Questions</h2>
             <div class="faq-list">
                 <details class="faq-item" open>
                     <summary>What is Inveto?<span class="faq-toggle" aria-hidden="true"></span></summary>

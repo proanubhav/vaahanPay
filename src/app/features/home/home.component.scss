@@ -102,7 +102,7 @@ nav {
   border-radius: 40px;
   background: #303d48;
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
@@ -241,7 +241,8 @@ h1 {
 }
 
 .why-us {
-  padding-top: 23px;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
   scroll-margin-top: 30px;
 
   h2 {
@@ -358,7 +359,7 @@ h1 {
 
   nav {
     gap: 30px;
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .header-button {
@@ -757,11 +758,11 @@ h1 {
 
     h3 {
       margin: 18px 0 13px;
-      font-size: 13px;
+      font-size: 18px;
     }
 
     p {
-      font-size: 15px;
+      font-size: 16px;
     }
   }
 
@@ -1157,7 +1158,7 @@ h1 {
   max-width: 350px;
   margin-top: 25px !important;
   color: var(--home-muted);
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.9;
 }
 
@@ -1618,11 +1619,11 @@ h1 {
     max-width: 100%;
 
     h3 {
-      font-size: 14px;
+      font-size: 18px;
     }
 
     p {
-      font-size: 13px;
+      font-size: 16px;
     }
   }
 
@@ -1664,13 +1665,15 @@ h1 {
 }
 
 .faq-section {
-  max-width: 690px;
+  max-width: 80%;
   margin: clamp(60px, 8vw, 100px) auto 0;
 
   h2 {
     margin: 0 0 34px;
+    margin-bottom: 2rem;
+    line-height: 1.2;
     text-align: center;
-    font-size: clamp(24px, 2.5vw, 30px);
+    font-size: 44px;
     font-weight: 600;
     letter-spacing: -1px;
   }
@@ -1691,7 +1694,7 @@ h1 {
     align-items: center;
     justify-content: space-between;
     gap: 22px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 1.6;
     list-style: none;
@@ -1716,7 +1719,7 @@ h1 {
     max-width: 585px;
     margin: 9px 24px 0 0;
     color: #7e8b88;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.8;
   }
 }
@@ -1790,7 +1793,7 @@ h1 {
     max-width: 350px;
     margin: 0;
     color: #73877b;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.8;
   }
 }
@@ -1810,7 +1813,7 @@ h1 {
   padding: 0 22px;
   border: 1px solid transparent;
   border-radius: 9px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -1893,12 +1896,12 @@ h1 {
 
     summary {
       gap: 14px;
-      font-size: 13px;
+      font-size: 16px;
     }
 
     p {
       margin-right: 0;
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 
@@ -1938,7 +1941,33 @@ h1 {
   }
 }
 
-.mobility-section {
+.mobility-header-spacer {
+  height: var(--header-height);
+}
+
+.mobility-header-bar {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  padding-block: 18px;
+  background: #fff;
+  transition: box-shadow 200ms ease;
+
+  &--scrolled {
+    box-shadow: 0 4px 20px rgb(35 81 59 / 12%);
+  }
+}
+
+#why-us,
+#subscribe,
+#faq-title {
+  scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobility-header-bar {
+    transition: none;
+  }
 }
 
 .mobility-panel {
@@ -1946,7 +1975,7 @@ h1 {
   isolation: isolate;
   overflow: hidden;
   background: #fff;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
 }
 
 .mobility-header {
@@ -2002,16 +2031,16 @@ h1 {
   min-width: 115px;
   min-height: 44px;
   padding: 9px 22px;
-  border: 1px solid #00bd92;
+  border: 1px solid #34424c;
   border-radius: 11px;
-  background: #00cfa0;
-  color: #174f42;
+  background: #34424c;
+  color: #fff;
   box-shadow: 0 7px 18px rgb(0 177 133 / 18%);
   font: var(--mat-sys-title-medium);
   font-weight: 600;
 
   &:hover {
-    background: #b5f2dc;
+    background: #000;
   }
 }
 
@@ -2020,7 +2049,7 @@ h1 {
   display: grid;
   place-items: center;
   min-height: 390px;
-  padding: 80px 20px 65px;
+  padding: 130px 20px 80px;
   text-align: center;
 }
 
@@ -2032,14 +2061,17 @@ h1 {
   h2 {
     margin: 0;
     font: var(--mat-sys-display-small);
+    font-size: 52px;
     font-weight: 700;
     letter-spacing: -0.9px;
+    line-height: 1.1;
   }
 
   p {
     margin: 19px 0 28px;
     color: #7e8b88;
     font: var(--mat-sys-body-large);
+    font-size: 18px;
   }
 }
 
