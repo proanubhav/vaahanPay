@@ -1,5 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
+import {
+  afterNextRender,
+  Component,
+  DestroyRef,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +19,19 @@ import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal, vie
   },
 })
 export class HomeComponent {
+  protected readonly currentYear = new Date().getFullYear();
   private readonly document = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly header = viewChild.required<ElementRef<HTMLElement>>('header');
+  private readonly header =
+    viewChild.required<ElementRef<HTMLElement>>('header');
   protected readonly headerHeight = signal(0);
   protected readonly isScrolled = signal(false);
 
   constructor() {
     afterNextRender(() => {
       const element = this.header().nativeElement;
-      const updateHeight = () => this.headerHeight.set(element.getBoundingClientRect().height);
+      const updateHeight = () =>
+        this.headerHeight.set(element.getBoundingClientRect().height);
       updateHeight();
       this.onScroll();
 
