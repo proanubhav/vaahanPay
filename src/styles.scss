@@ -67,3 +67,18 @@ select,
 textarea {
   font-family: inherit;
 }
+
+.login-dialog {
+  --mat-dialog-container-shape: 18px;
+  --mat-dialog-container-color: #fff;
+
+  .mat-mdc-dialog-surface {
+    border-radius: 18px;
+    background: #fff;
+  }
+}
+
+.cdk-overlay-backdrop.login-backdrop {
+  background: rgb(22 37 30 / 55%);
+  backdrop-filter: blur(3px);
+}

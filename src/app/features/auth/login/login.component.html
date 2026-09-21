@@ -1,0 +1,177 @@
+<section class="login-panel" [attr.aria-busy]="busy()">
+  <button
+    class="close-button"
+    type="button"
+    aria-label="Close login"
+    (click)="close()"
+  >
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="m6 6 12 12M18 6 6 12" />
+    </svg>
+  </button>
+
+  <div
+    class="progress"
+    [attr.aria-label]="
+      step() === 'details'
+        ? 'Step 1 of 2: Enter details'
+        : 'Step 2 of 2: Verify OTP'
+    "
+  >
+    <span class="active"></span><span [class.active]="step() === 'otp'"></span>
+  </div>
+  <span class="vehicle-badge">{{ data.vehicleNumber }}</span>
+
+  @if (step() === 'details') {
+    <h2 id="login-title">Enter your details</h2>
+    <p id="login-description" class="description">
+      We’ll send you an OTP to verify your number.
+    </p>
+
+    <form [formGroup]="form" (ngSubmit)="sendOtp()">
+      <div class="field">
+        <label for="login-name">Full name</label>
+        <input
+          id="login-name"
+          formControlName="name"
+          autocomplete="name"
+          placeholder="Enter your full name"
+          maxlength="100"
+          required
+          [readOnly]="busy()"
+          aria-describedby="name-error"
+          [attr.aria-invalid]="
+            form.controls.name.touched && form.controls.name.invalid
+          "
+        />
+        <small id="name-error" class="field-error">
+          @if (form.controls.name.touched && form.controls.name.invalid) {
+            Enter your full name.
+          }
+        </small>
+      </div>
+      <div class="field">
+        <label for="login-mobile">Mobile number</label>
+        <div
+          class="mobile-field"
+          [class.invalid]="
+            form.controls.mobile.touched && form.controls.mobile.invalid
+          "
+        >
+          <span aria-hidden="true">+91</span>
+          <input
+            id="login-mobile"
+            type="tel"
+            formControlName="mobile"
+            inputmode="numeric"
+            autocomplete="tel-national"
+            placeholder="10-digit mobile number"
+            maxlength="10"
+            required
+            [readOnly]="busy()"
+            aria-describedby="mobile-hint mobile-error"
+            [attr.aria-invalid]="
+              form.controls.mobile.touched && form.controls.mobile.invalid
+            "
+          />
+        </div>
+        <span id="mobile-hint" class="visually-hidden"
+          >Indian mobile number, country code +91.</span
+        >
+        <small id="mobile-error" class="field-error">
+          @if (form.controls.mobile.touched && form.controls.mobile.invalid) {
+            Enter a valid 10-digit mobile number.
+          }
+        </small>
+      </div>
+      @if (error()) {
+        <p class="request-error" role="alert">{{ error() }}</p>
+      }
+      <button class="primary-button" type="submit" [disabled]="busy()">
+        {{ busy() ? 'Sending OTP…' : 'Send OTP' }}
+        <span aria-hidden="true">→</span>
+      </button>
+    </form>
+
+    @if (data.termsUrl && data.privacyUrl) {
+      <p class="legal">
+        By continuing, you agree to our
+        <a [href]="data.termsUrl" target="_blank" rel="noopener"
+          >Terms &amp; Conditions</a
+        >
+        and
+        <a [href]="data.privacyUrl" target="_blank" rel="noopener"
+          >Privacy Policy</a
+        >.
+      </p>
+    } @else {
+      <p class="legal">We’ll use this number to verify your login.</p>
+    }
+  } @else {
+    <h2 id="login-title">Verify OTP</h2>
+    <p id="login-description" class="description">
+      Enter the 4-digit code sent to +91 {{ mobile() }}.
+    </p>
+    <button
+      class="text-button edit-number"
+      type="button"
+      [disabled]="busy()"
+      (click)="editDetails()"
+    >
+      Change number
+    </button>
+
+    <form (submit)="$event.preventDefault(); verify()">
+      <fieldset class="otp-group" [disabled]="busy()">
+        <legend class="visually-hidden">4-digit verification code</legend>
+        @for (digit of digits(); track $index; let index = $index) {
+          <input
+            #otpInput
+            class="otp-input"
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            maxlength="4"
+            [attr.autocomplete]="index === 0 ? 'one-time-code' : 'off'"
+            [attr.aria-label]="'OTP digit ' + (index + 1)"
+            [value]="digit"
+            (input)="onDigitInput(index, $event)"
+            (paste)="onPaste(index, $event)"
+            (keydown)="onDigitKey(index, $event)"
+          />
+        }
+      </fieldset>
+      <p class="resend-copy">
+        Didn’t receive the code?
+        @if (remaining() > 0) {
+          <span>Resend in {{ remaining() }}s</span>
+        } @else {
+          <button
+            class="text-button"
+            type="button"
+            [disabled]="busy()"
+            (click)="resend()"
+          >
+            Resend OTP
+          </button>
+        }
+      </p>
+      @if (!canVerify) {
+        <p class="request-error" role="status">
+          Verification is currently unavailable. Please try again later.
+        </p>
+      }
+      @if (error()) {
+        <p class="request-error" role="alert">{{ error() }}</p>
+      }
+      <button
+        class="primary-button"
+        type="submit"
+        [disabled]="busy() || !canVerify"
+      >
+        {{ busy() ? 'Please wait…' : 'Check Challans' }}
+        <span aria-hidden="true">→</span>
+      </button>
+    </form>
+  }
+</section>

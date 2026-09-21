@@ -8,6 +8,13 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  LoginComponent,
+  LoginDialogData,
+  LoginDialogResult,
+} from '../auth/login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +28,48 @@ import {
 export class HomeComponent {
   protected readonly currentYear = new Date().getFullYear();
   private readonly document = inject(DOCUMENT);
+  private readonly dialog = inject(MatDialog);
   private readonly destroyRef = inject(DestroyRef);
   private readonly header =
     viewChild.required<ElementRef<HTMLElement>>('header');
   protected readonly headerHeight = signal(0);
   protected readonly isScrolled = signal(false);
+  protected readonly loginNotice = signal('');
+
+  protected openLogin(event: Event): void {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    if (!form.reportValidity() || this.dialog.getDialogById('vehicle-login'))
+      return;
+    const vehicleNumber = String(new FormData(form).get('vehicleNumber') ?? '')
+      .replace(/\s/g, '')
+      .toUpperCase();
+    if (!vehicleNumber) return;
+    this.loginNotice.set('');
+    this.dialog
+      .open<LoginComponent, LoginDialogData, LoginDialogResult>(
+        LoginComponent,
+        {
+          id: 'vehicle-login',
+          width: '448px',
+          maxWidth: 'calc(100vw - 32px)',
+          maxHeight: 'calc(100dvh - 32px)',
+          panelClass: 'login-dialog',
+          backdropClass: 'login-backdrop',
+          ariaLabelledBy: 'login-title',
+          ariaDescribedBy: 'login-description',
+          autoFocus: '#login-name',
+          restoreFocus: true,
+          data: { vehicleNumber },
+        },
+      )
+      .afterClosed()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((result) => {
+        if (result?.verified)
+          this.loginNotice.set('Your mobile number has been verified.');
+      });
+  }
 
   constructor() {
     afterNextRender(() => {
