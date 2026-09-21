@@ -42,7 +42,7 @@
     gap: 8px;
     padding: 7px 12px;
     border-radius: 6px;
-    color: #728278;
+    color: #63756a;
     font-size: 13px;
     cursor: pointer;
     b {
@@ -123,7 +123,7 @@
 }
 .challan-id {
   margin-top: 10px;
-  color: #88948d;
+  color: #77857d;
   font-size: 9px;
   letter-spacing: 0.4px;
   overflow-wrap: anywhere;
@@ -149,7 +149,7 @@
   flex-wrap: wrap;
   gap: 6px;
   margin: 5px 0 10px;
-  color: #7d8a83;
+  color: #6d7c73;
   font-size: 12px;
   time {
     white-space: nowrap;
@@ -190,7 +190,7 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: #9a7646;
+  color: #8e6c3e;
   font-size: 9px;
   .icon {
     width: 12px;
@@ -212,7 +212,7 @@
 .amount-unavailable {
   background: #f8faf8;
   .challan-amount {
-    color: #7f8d84;
+    color: #6f7e74;
   }
 }
 .missing-challan {
