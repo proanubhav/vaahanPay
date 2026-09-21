@@ -7,33 +7,82 @@
 .login-panel {
   position: relative;
   padding: 36px 34px 32px;
+  background: linear-gradient(155deg, #edf9f3, #fff 38%);
 }
 .close-button {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 16px;
+  right: 16px;
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
-  padding: 10px;
-  border: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #dce9e2;
   border-radius: 50%;
-  background: #f1f6f3;
-  color: #61756b;
+  background: #fff;
+  color: #52645d;
+  box-shadow: 0 2px 6px rgb(35 81 59 / 4%);
   cursor: pointer;
+  &:hover {
+    background: #e8f7ef;
+    border-color: #a5d8c3;
+    color: #174f42;
+  }
   svg {
-    width: 18px;
-    height: 18px;
+    display: block;
+    width: 20px;
+    height: 20px;
     fill: none;
     stroke: currentColor;
-    stroke-width: 1.7;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
+}
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 36px;
+
+  strong {
+    display: block;
+    font-size: 16px;
+    letter-spacing: -0.3px;
+  }
+  div > span {
+    display: block;
+    margin-top: 3px;
+    font-size: 11px;
+    color: #61756b;
+  }
+}
+.login-brand-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #bde8d6;
+  border-radius: 14px;
+  background: #d6f8ec;
+  color: #008466;
+
+  svg {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 }
 .progress {
   display: flex;
   gap: 8px;
-  margin: 0 42px 28px 0;
+  margin: 24px 0;
   span {
     height: 5px;
     flex: 1;
@@ -41,7 +90,7 @@
     background: #e5ece8;
   }
   .active {
-    background: #00a780;
+    background: linear-gradient(90deg, #008f70, #00cfa0);
   }
 }
 .vehicle-badge {
@@ -55,7 +104,7 @@
   letter-spacing: 0.6px;
 }
 h2 {
-  margin: 20px 0 10px;
+  margin: 18px 0 10px;
   font-size: 24px;
   line-height: 1.35;
   font-weight: 700;
@@ -137,7 +186,8 @@ input {
   padding: 12px 16px;
   border: 1px solid #00bd92;
   border-radius: 11px;
-  background: #00cfa0;
+  background: linear-gradient(110deg, #00cfa0, #25d9aa);
+  box-shadow: 0 6px 18px rgb(0 167 128 / 14%);
   color: #174f42;
   font: inherit;
   font-size: 14px;
@@ -149,6 +199,7 @@ input {
   &:disabled {
     opacity: 0.55;
     cursor: not-allowed;
+    box-shadow: none;
   }
 }
 .legal {
@@ -195,6 +246,9 @@ a,
   text-align: center;
   font-size: 24px;
   font-weight: 700;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgb(35 81 59 / 4%);
 }
 .resend-copy {
   margin: 12px 0 0;

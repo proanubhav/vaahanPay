@@ -36,15 +36,21 @@ export class HomeComponent {
   protected readonly isScrolled = signal(false);
   protected readonly loginNotice = signal('');
 
-  protected openLogin(event: Event): void {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    if (!form.reportValidity() || this.dialog.getDialogById('vehicle-login'))
-      return;
-    const vehicleNumber = String(new FormData(form).get('vehicleNumber') ?? '')
-      .replace(/\s/g, '')
-      .toUpperCase();
-    if (!vehicleNumber) return;
+  protected openLogin(event?: Event): void {
+    event?.preventDefault();
+    if (this.dialog.getDialogById('vehicle-login')) return;
+    let data: LoginDialogData = { mode: 'login' };
+    if (event) {
+      const form = event.target as HTMLFormElement;
+      if (!form.reportValidity()) return;
+      const vehicleNumber = String(
+        new FormData(form).get('vehicleNumber') ?? '',
+      )
+        .replace(/\s/g, '')
+        .toUpperCase();
+      if (!vehicleNumber) return;
+      data = { mode: 'vehicle', vehicleNumber };
+    }
     this.loginNotice.set('');
     this.dialog
       .open<LoginComponent, LoginDialogData, LoginDialogResult>(
@@ -58,9 +64,9 @@ export class HomeComponent {
           backdropClass: 'login-backdrop',
           ariaLabelledBy: 'login-title',
           ariaDescribedBy: 'login-description',
-          autoFocus: '#login-name',
+          autoFocus: data.mode === 'login' ? '#login-mobile' : '#login-name',
           restoreFocus: true,
-          data: { vehicleNumber },
+          data,
         },
       )
       .afterClosed()

@@ -6,9 +6,19 @@
     (click)="close()"
   >
     <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="m6 6 12 12M18 6 6 12" />
+      <path d="M7 7 17 17M17 7 7 17" />
     </svg>
   </button>
+
+  <div class="login-brand">
+    <span class="login-brand-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" />
+        <path d="m8.5 11.5 2.5 2.5 4.5-4.5" />
+      </svg>
+    </span>
+    <div><strong>VaahanPay</strong><span>Simple, secure access</span></div>
+  </div>
 
   <div
     class="progress"
@@ -20,36 +30,46 @@
   >
     <span class="active"></span><span [class.active]="step() === 'otp'"></span>
   </div>
-  <span class="vehicle-badge">{{ data.vehicleNumber }}</span>
+  @if (data.vehicleNumber) {
+    <span class="vehicle-badge">{{ data.vehicleNumber }}</span>
+  }
 
   @if (step() === 'details') {
-    <h2 id="login-title">Enter your details</h2>
+    <h2 id="login-title">
+      {{ isLogin ? 'Welcome back' : 'Enter your details' }}
+    </h2>
     <p id="login-description" class="description">
-      We’ll send you an OTP to verify your number.
+      {{
+        isLogin
+          ? 'Log in with your mobile number. No password needed.'
+          : 'We’ll send you an OTP to verify your number.'
+      }}
     </p>
 
     <form [formGroup]="form" (ngSubmit)="sendOtp()">
-      <div class="field">
-        <label for="login-name">Full name</label>
-        <input
-          id="login-name"
-          formControlName="name"
-          autocomplete="name"
-          placeholder="Enter your full name"
-          maxlength="100"
-          required
-          [readOnly]="busy()"
-          aria-describedby="name-error"
-          [attr.aria-invalid]="
-            form.controls.name.touched && form.controls.name.invalid
-          "
-        />
-        <small id="name-error" class="field-error">
-          @if (form.controls.name.touched && form.controls.name.invalid) {
-            Enter your full name.
-          }
-        </small>
-      </div>
+      @if (!isLogin) {
+        <div class="field">
+          <label for="login-name">Full name</label>
+          <input
+            id="login-name"
+            formControlName="name"
+            autocomplete="name"
+            placeholder="Enter your full name"
+            maxlength="100"
+            required
+            [readOnly]="busy()"
+            aria-describedby="name-error"
+            [attr.aria-invalid]="
+              form.controls.name.touched && form.controls.name.invalid
+            "
+          />
+          <small id="name-error" class="field-error">
+            @if (form.controls.name.touched && form.controls.name.invalid) {
+              Enter your full name.
+            }
+          </small>
+        </div>
+      }
       <div class="field">
         <label for="login-mobile">Mobile number</label>
         <div
@@ -169,7 +189,13 @@
         type="submit"
         [disabled]="busy() || !canVerify"
       >
-        {{ busy() ? 'Please wait…' : 'Check Challans' }}
+        {{
+          busy()
+            ? 'Please wait…'
+            : isLogin
+              ? 'Verify & log in'
+              : 'Check Challans'
+        }}
         <span aria-hidden="true">→</span>
       </button>
     </form>

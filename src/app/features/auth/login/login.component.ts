@@ -22,14 +22,15 @@ import {
 } from '../../../core/services/login.service';
 
 export interface LoginDialogData {
-  vehicleNumber: string;
+  mode?: 'login' | 'vehicle';
+  vehicleNumber?: string;
   termsUrl?: string;
   privacyUrl?: string;
 }
 
 export interface LoginDialogResult {
   verified: true;
-  vehicleNumber: string;
+  vehicleNumber?: string;
 }
 
 @Component({
@@ -41,6 +42,7 @@ export interface LoginDialogResult {
 })
 export class LoginComponent {
   protected readonly data = inject<LoginDialogData>(MAT_DIALOG_DATA);
+  protected readonly isLogin = this.data.mode === 'login';
   private readonly dialog = inject(
     MatDialogRef<LoginComponent, LoginDialogResult>,
   );
@@ -76,6 +78,7 @@ export class LoginComponent {
   });
 
   constructor() {
+    if (this.isLogin) this.form.controls.name.disable();
     this.destroyRef.onDestroy(() => this.cooldown?.unsubscribe());
   }
 
@@ -89,9 +92,11 @@ export class LoginComponent {
     if (this.form.invalid) return;
     const value = this.form.getRawValue();
     this.requestOtp({
-      name: value.name.trim(),
       mobile: value.mobile,
-      vehicleNumber: this.data.vehicleNumber,
+      ...(!this.isLogin ? { name: value.name.trim() } : {}),
+      ...(this.data.vehicleNumber
+        ? { vehicleNumber: this.data.vehicleNumber }
+        : {}),
     });
   }
 
@@ -110,7 +115,9 @@ export class LoginComponent {
     setTimeout(() => {
       if (!this.destroyRef.destroyed)
         this.element.nativeElement
-          .querySelector<HTMLInputElement>('#login-name')
+          .querySelector<HTMLInputElement>(
+            this.isLogin ? '#login-mobile' : '#login-name',
+          )
           ?.focus();
     });
   }
@@ -236,7 +243,9 @@ export class LoginComponent {
           }
           this.dialog.close({
             verified: true,
-            vehicleNumber: this.data.vehicleNumber,
+            ...(this.data.vehicleNumber
+              ? { vehicleNumber: this.data.vehicleNumber }
+              : {}),
           });
         },
         error: () =>

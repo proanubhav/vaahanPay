@@ -203,4 +203,56 @@ describe('LoginComponent', () => {
     fixture.destroy();
     expect(request.cancelled).toBe(true);
   });
+
+  it('uses only the mobile number for the standalone login flow', () => {
+    Object.assign(TestBed.inject(MAT_DIALOG_DATA), {
+      mode: 'login',
+      vehicleNumber: undefined,
+    });
+    render();
+    expect(fixture.nativeElement.querySelector('#login-name')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.vehicle-badge')).toBeNull();
+    input('#login-mobile', '9876543210');
+    submit();
+    const request = http.expectOne((request) => request.url === '/login');
+    expect(request.request.params.keys()).toEqual(['mobile']);
+    request.flush({ success: true, requestId: 'login-challenge' });
+    fixture.detectChanges();
+    pasteCode('1234');
+    verifyOtp.mockReturnValueOnce(of({ success: true }));
+    submit();
+    expect(verifyOtp).toHaveBeenCalledWith({
+      mobile: '9876543210',
+      otp: '1234',
+      requestId: 'login-challenge',
+    });
+    expect(close).toHaveBeenCalledWith({ verified: true });
+  });
+
+  it('keeps the name field hidden when changing a standalone login number', () => {
+    Object.assign(TestBed.inject(MAT_DIALOG_DATA), {
+      mode: 'login',
+      vehicleNumber: undefined,
+    });
+    render();
+    input('#login-mobile', '123');
+    submit();
+    http.expectNone((request) => request.url === '/login');
+    input('#login-mobile', '9876543210');
+    submit();
+    http
+      .expectOne((request) => request.url === '/login')
+      .flush({ success: true });
+    fixture.detectChanges();
+    expect(
+      fixture.nativeElement.querySelector('.primary-button').textContent,
+    ).toContain('Verify & log in');
+    fixture.nativeElement.querySelector('.edit-number').click();
+    fixture.detectChanges();
+    vi.advanceTimersByTime(0);
+    expect(fixture.nativeElement.querySelector('#login-name')).toBeNull();
+    expect(fixture.nativeElement.querySelector('#login-mobile').value).toBe(
+      '9876543210',
+    );
+  });
 });

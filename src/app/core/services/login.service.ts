@@ -3,9 +3,9 @@ import { inject, Injectable, InjectionToken } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 export interface LoginDetails {
-  name: string;
+  name?: string;
   mobile: string;
-  vehicleNumber: string;
+  vehicleNumber?: string;
 }
 
 export interface LoginResponse {
@@ -43,9 +43,11 @@ export class LoginService {
     // Provisional query keys: confirm these against the /login API contract.
     return this.http.get<LoginResponse>(this.config.loginUrl, {
       params: {
-        name: details.name,
         mobile: details.mobile,
-        vehicleNumber: details.vehicleNumber,
+        ...(details.name ? { name: details.name } : {}),
+        ...(details.vehicleNumber
+          ? { vehicleNumber: details.vehicleNumber }
+          : {}),
       },
     });
   }

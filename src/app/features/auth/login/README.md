@@ -1,6 +1,9 @@
 # Login popup integration
 
 Both homepage vehicle forms open `LoginComponent` using Angular Material Dialog.
+The header Login button opens the same dialog with `mode: 'login'`, which asks only
+for a mobile number and OTP. It omits name and vehicle number from API requests.
+Vehicle forms use `mode: 'vehicle'` and keep the existing full-name field.
 The registration number is passed through `LoginDialogData`. Dialog focus trapping,
 Escape/backdrop dismissal, scroll locking, and focus restoration are managed by Material.
 
@@ -12,6 +15,8 @@ The supplied endpoint is `GET /login`. `LoginService.requestOtp` currently uses 
 ```text
 GET /login?name=Test%20Driver&mobile=9876543210&vehicleNumber=DL01AB1234
 ```
+
+Standalone login sends `GET /login?mobile=9876543210`.
 
 It expects a JSON response with `success: true` and an optional string `requestId`.
 Only an explicit successful response advances to OTP entry. An HTTP error,
