@@ -1,0 +1,172 @@
+@use "tokens" as *;
+
+:host {
+  display: block;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button,
+input {
+  font: inherit;
+}
+button,
+label,
+a,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+button,
+a,
+summary,
+input,
+main {
+  &:focus-visible {
+    outline: 3px solid $green;
+    outline-offset: 4px;
+  }
+}
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.overline {
+  color: $muted;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+  }
+  p {
+    margin-top: 4px;
+    color: $muted;
+    font-size: 14px;
+  }
+}
+.count {
+  display: inline-grid;
+  place-items: center;
+  min-width: 25px;
+  height: 24px;
+  padding-inline: 6px;
+  border: 1px solid #dde8e1;
+  border-radius: 7px;
+  color: $green;
+  background: #edf6f0;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 43px;
+  padding: 11px 19px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  .icon {
+    width: 17px;
+    height: 17px;
+  }
+}
+.button-primary {
+  background: $mint;
+  color: #164d3f;
+  &:hover {
+    background: #21d7ac;
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.78;
+  }
+}
+dl {
+  margin: 0;
+  dt {
+    color: #222;
+    font-size: 13px;
+  }
+  dd {
+    margin: 5px 0 0;
+    font-size: 13px;
+  }
+  .unavailable {
+    color: #8a9891;
+    font-size: 14px;
+  }
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+.pill-green {
+  background: #eaf7ee;
+  color: #23815c;
+}
+.pill-amber {
+  background: #fff4e3;
+  color: #966722;
+}
+@media (max-width: 700px) {
+  .section-heading {
+    gap: 12px;
+    h2 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 13px;
+    }
+    .button {
+      padding-inline: 12px;
+      font-size: 13px;
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

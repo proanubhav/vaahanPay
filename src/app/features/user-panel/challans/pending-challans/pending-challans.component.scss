@@ -1,0 +1,347 @@
+@use "../../styles/tokens" as *;
+@use "../../styles/common";
+
+.filter-switch {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.outstanding-label {
+  color: $muted;
+  font-size: 9px;
+  letter-spacing: 1.1px;
+  text-align: right;
+  strong {
+    display: block;
+    color: $ink;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.8px;
+  }
+}
+.list-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+.filter-options {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid $line;
+  border-radius: 9px;
+  background: #edf2ee;
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 6px;
+    color: #728278;
+    font-size: 13px;
+    cursor: pointer;
+    b {
+      font-size: 9px;
+      font-weight: 400;
+    }
+  }
+}
+.select-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: $muted;
+  font-size: 12px;
+  white-space: nowrap;
+  input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+  }
+}
+@each $filter in all, online, court {
+  #filter-#{$filter}:checked ~ .list-toolbar label[for="filter-#{$filter}"] {
+    color: $ink;
+    background: white;
+    box-shadow: 0 1px 4px #23372b12;
+  }
+  #filter-#{$filter}:focus-visible
+    ~ .list-toolbar
+    label[for="filter-#{$filter}"] {
+    outline: 3px solid $green;
+    outline-offset: 2px;
+  }
+}
+#filter-online:checked ~ .challan-grid .court-challan,
+#filter-court:checked ~ .challan-grid .online-challan {
+  display: none;
+}
+.challan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+}
+.challan-card {
+  min-width: 0;
+  padding: 19px 21px 0;
+  border: 1px solid $line;
+  border-radius: 13px;
+  background: white;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+  &:has(input:checked) {
+    border-color: #54bc99;
+    box-shadow: 0 0 0 1px #54bc99;
+    background: #fcfffd;
+  }
+  h3 {
+    min-height: 36px;
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+}
+.challan-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  input {
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: $green;
+    cursor: pointer;
+  }
+}
+.challan-id {
+  margin-top: 10px;
+  color: #88948d;
+  font-size: 9px;
+  letter-spacing: 0.4px;
+  overflow-wrap: anywhere;
+}
+.challan-amount {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+  color: $ink;
+  font-size: 26px;
+  letter-spacing: -0.7px;
+  line-height: 1.3;
+  span {
+    font-size: 9px;
+    letter-spacing: 0;
+    color: $muted;
+  }
+}
+.challan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 5px 0 10px;
+  color: #7d8a83;
+  font-size: 12px;
+  time {
+    white-space: nowrap;
+  }
+}
+.challan-details {
+  border-top: 1px solid #edf1ee;
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 45px;
+    list-style: none;
+    cursor: pointer;
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+  &[open] .details-link .icon {
+    transform: rotate(90deg);
+  }
+  dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    padding: 8px 0 18px;
+    dd {
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+    dt {
+      font-size: 9px;
+    }
+  }
+}
+.pending-age {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #9a7646;
+  font-size: 9px;
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+.details-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: $green;
+  font-size: 12px;
+  white-space: nowrap;
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+.amount-unavailable {
+  background: #f8faf8;
+  .challan-amount {
+    color: #7f8d84;
+  }
+}
+.missing-challan {
+  margin-top: 22px;
+  border: 1px dashed #cadcd0;
+  border-radius: 12px;
+  background: #edf6f0;
+  summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px 20px;
+    cursor: pointer;
+    list-style: none;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    strong {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    small {
+      display: block;
+      margin-top: 3px;
+      color: $muted;
+      font-size: 12px;
+    }
+  }
+}
+.missing-icon {
+  display: grid;
+  place-items: center;
+  width: 33px;
+  height: 33px;
+  border: 1px solid #d4e4d9;
+  border-radius: 50%;
+  color: $green;
+}
+.text-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  color: $green;
+  font-size: 13px;
+  .icon {
+    width: 16px;
+  }
+}
+.missing-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 15px;
+  padding: 0 20px 20px;
+  label {
+    display: grid;
+    flex: 1;
+    gap: 5px;
+    color: $muted;
+    font-size: 13px;
+  }
+  input {
+    min-width: 0;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3e1d8;
+    border-radius: 7px;
+    color: $ink;
+    background: white;
+    font-size: 14px;
+  }
+}
+@media (max-width: 1200px) {
+  .pending-age {
+    font-size: 8px;
+  }
+}
+@media (max-width: 960px) {
+  .challan-grid {
+    grid-template-columns: 1fr;
+  }
+  .challan-card h3 {
+    min-height: 0;
+  }
+  .pending-age {
+    font-size: 12px;
+  }
+  .missing-challan summary {
+    flex-wrap: wrap;
+  }
+  .text-action {
+    margin-left: 45px;
+  }
+}
+@media (max-width: 700px) {
+  .outstanding-label {
+    font-size: 8px;
+    strong {
+      font-size: 21px;
+    }
+  }
+  .pending-screen .section-heading h2 {
+    max-width: 200px;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+  .filter-options {
+    width: 100%;
+    justify-content: space-between;
+    label {
+      padding-inline: 12px;
+    }
+  }
+  .challan-card {
+    padding-inline: 18px;
+  }
+  .missing-challan summary {
+    padding-inline: 15px;
+  }
+  .missing-challan summary small {
+    max-width: 220px;
+  }
+}
+@media (max-width: 700px) {
+  .list-toolbar {
+    flex-wrap: wrap;
+  }
+  .select-all {
+    margin-left: auto;
+  }
+}

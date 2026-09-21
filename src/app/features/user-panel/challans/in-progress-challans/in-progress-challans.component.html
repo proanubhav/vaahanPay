@@ -1,0 +1,64 @@
+<section
+  class="screen progress-screen"
+  id="progress-panel"
+  aria-labelledby="progress-heading"
+>
+  <div class="section-heading">
+    <div>
+      <h2 id="progress-heading">
+        In-progress challans <span class="count">0</span>
+      </h2>
+      <p>Follow every step, from submission to resolution.</p>
+    </div>
+  </div>
+  <div class="empty-state">
+    <div class="empty-illustration clock-illustration" aria-hidden="true">
+      <span class="orbit-dot"></span>
+      <div class="illustration-sheet">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="illustration-badge">
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" />
+        </svg>
+      </div>
+    </div>
+    <span class="overline">NOTHING IN THE QUEUE</span>
+    <h3>No challans in progress</h3>
+    <p>
+      Once you submit a challan for resolution, you can<br
+        class="desktop-break"
+      />
+      follow its progress right here.
+    </p>
+    <a class="button button-primary" routerLink="/user-panel/challans/pending"
+      >View pending challans
+      <svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M5 12h14m-5-5 5 5-5 5" /></svg
+    ></a>
+    <div class="empty-steps">
+      <span><b>01</b> Submit challan</span><i></i
+      ><span><b>02</b> We work on it</span><i></i
+      ><span><b>03</b> Get an update</span>
+    </div>
+  </div>
+</section>

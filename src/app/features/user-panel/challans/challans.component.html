@@ -1,0 +1,62 @@
+<div class="challan-workspace">
+  <div class="vehicle-strip">
+    <span class="strip-icon"
+      ><svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path
+          d="m5 8 2-5h10l2 5M3 8h18v10H3zM6 18v3m12-3v3M3 12h18M6 15h2m8 0h2"
+        /></svg
+    ></span>
+    <div>
+      <strong>HR29BB4896</strong>
+      <p>Volkswagen Virtus <span>·</span> Comfortline 1.0 TSI MT · 2023</p>
+    </div>
+    <span class="verified"
+      ><svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m8 12 3 3 5-6" />
+        <path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6z" />
+      </svg>
+      Govt. verified data</span
+    >
+  </div>
+  <div class="status-tabs" aria-label="Challan status">
+    <a
+      routerLink="/user-panel/challans/pending"
+      class="tab-pending"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >Pending <span>8</span></a
+    ><a
+      routerLink="/user-panel/challans/in-progress"
+      class="tab-progress"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >In progress <span>0</span></a
+    ><a
+      routerLink="/user-panel/challans/closed"
+      class="tab-closed"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >Closed <span>0</span></a
+    >
+  </div>
+
+  <router-outlet />
+</div>

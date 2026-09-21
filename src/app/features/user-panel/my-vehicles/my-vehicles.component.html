@@ -1,0 +1,227 @@
+<section
+  class="screen vehicles-screen"
+  id="vehicles-panel"
+  aria-labelledby="vehicles-heading"
+>
+  <div class="section-heading">
+    <div>
+      <h2 id="vehicles-heading">My vehicles <span class="count">01</span></h2>
+      <p>A clear view of everything you drive.</p>
+    </div>
+    <button
+      type="button"
+      class="button button-primary"
+      (click)="openAddVehicle()"
+    >
+      <svg
+        class="icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 5v14M5 12h14" />
+      </svg>
+      Add vehicle
+    </button>
+  </div>
+  <div class="vehicle-layout">
+    <article class="vehicle-pass">
+      <div class="pass-top">
+        <span class="overline">YOUR GARAGE / 01</span
+        ><span class="status-dot">Registered</span>
+      </div>
+      <h3>Volkswagen Virtus</h3>
+      <p>Comfortline 1.0 TSI MT · 2023</p>
+      <div class="car-art" aria-hidden="true">
+        <div class="art-orbit"></div>
+        <div class="car-roof"></div>
+        <div class="car-window"></div>
+        <div class="car-body"></div>
+        <div class="car-light"></div>
+        <div class="car-wheel wheel-front"></div>
+        <div class="car-wheel wheel-back"></div>
+        <div class="car-shadow"></div>
+      </div>
+      <div class="number-plate"><span>IND</span>HR29BB4896</div>
+      <div class="pass-bottom">
+        <span
+          ><svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m8 12 3 3 5-6" />
+            <path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6z" />
+          </svg>
+          Vehicle record</span
+        ><a routerLink="/user-panel/challans/pending"
+          >View 8 challans
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14m-5-5 5 5-5 5" /></svg
+        ></a>
+      </div>
+    </article>
+    <article class="info-card owner-card">
+      <div class="card-heading">
+        <span class="mini-icon"
+          ><svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21v-2a8 8 0 0 1 16 0v2" /></svg
+        ></span>
+        <h3>Owner details</h3>
+        <span class="section-number">01</span>
+      </div>
+      <dl>
+        <div>
+          <dt>Registered owner</dt>
+          <dd>Anubhav Gupta</dd>
+        </div>
+        <div>
+          <dt>Father’s name</dt>
+          <dd class="unavailable">Not available</dd>
+        </div>
+        <div>
+          <dt>Registered address</dt>
+          <dd class="unavailable">Not available</dd>
+        </div>
+      </dl>
+      <p class="data-note">Details reflect the available vehicle record.</p>
+    </article>
+  </div>
+  <div class="subheading">
+    <h3>Important dates</h3>
+    <span>Keep your next journey worry-free</span>
+  </div>
+  <div class="expiry-grid">
+    <article class="expiry-card">
+      <span class="expiry-icon"
+        ><svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 3C6 2 2 9 5 15s14 7 15-12ZM4 21 15 10" /></svg
+      ></span>
+      <div>
+        <h4>Pollution certificate</h4>
+        <p>27 Feb 2027</p>
+        <span>PUC expiry</span>
+      </div>
+      <span class="pill pill-green">Valid</span>
+    </article>
+    <article class="expiry-card">
+      <span class="expiry-icon"
+        ><svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="m8 12 3 3 5-6" />
+          <path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6z" /></svg
+      ></span>
+      <div>
+        <h4>Vehicle insurance</h4>
+        <p>30 Oct 2026</p>
+        <span>Insurance expiry</span>
+      </div>
+      <span class="pill pill-amber">Due soon</span>
+    </article>
+    <article class="expiry-card">
+      <span class="expiry-icon"
+        ><svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8m-8 4h5" /></svg
+      ></span>
+      <div>
+        <h4>Registration certificate</h4>
+        <p>06 Dec 2038</p>
+        <span>RC expiry</span>
+      </div>
+      <span class="pill pill-green">Valid</span>
+    </article>
+  </div>
+  <article class="info-card specifications">
+    <div class="card-heading">
+      <span class="mini-icon"
+        ><svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path
+            d="m5 8 2-5h10l2 5M3 8h18v10H3zM6 18v3m12-3v3M3 12h18M6 15h2m8 0h2"
+          /></svg
+      ></span>
+      <h3>Vehicle specifications</h3>
+      <span class="section-number">02</span>
+    </div>
+    <dl>
+      <div>
+        <dt>Make &amp; model</dt>
+        <dd>Virtus Comfortline 1.0 TSI MT</dd>
+      </div>
+      <div>
+        <dt>Type / colour</dt>
+        <dd class="unavailable">Not available</dd>
+      </div>
+      <div>
+        <dt>Engine number</dt>
+        <dd class="unavailable">Not available</dd>
+      </div>
+      <div>
+        <dt>Chassis number</dt>
+        <dd class="unavailable">Not available</dd>
+      </div>
+    </dl>
+  </article>
+</section>

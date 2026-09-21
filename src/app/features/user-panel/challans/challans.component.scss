@@ -1,0 +1,120 @@
+@use "../styles/tokens" as *;
+@use "../styles/common";
+
+.vehicle-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  border: 1px solid $line;
+  border-radius: 12px;
+  background: white;
+  strong {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  p {
+    margin-top: 3px;
+    color: $muted;
+    font-size: 13px;
+    span {
+      padding-inline: 4px;
+    }
+  }
+}
+.strip-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  background: #eff7f2;
+  color: $green;
+  .icon {
+    width: 25px;
+    height: 25px;
+  }
+}
+.verified {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  color: #23815c;
+  font-size: 12px;
+  white-space: nowrap;
+  .icon {
+    width: 17px;
+  }
+}
+.status-tabs {
+  display: flex;
+  gap: 31px;
+  margin: 13px 0 28px;
+  border-bottom: 1px solid #dfe8e2;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 16px 3px;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    color: $muted;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    span {
+      min-width: 21px;
+      padding: 1px 5px;
+      border-radius: 5px;
+      background: #eaf0eb;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
+@media (max-width: 960px) {
+  .verified {
+    font-size: 9px;
+  }
+  .vehicle-strip {
+    padding: 15px;
+    flex-wrap: wrap;
+    .verified {
+      margin-left: 59px;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .vehicle-strip {
+    gap: 11px;
+    p {
+      font-size: 12px;
+    }
+    .verified {
+      margin-left: 56px;
+    }
+  }
+  .strip-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .status-tabs {
+    justify-content: space-between;
+    gap: 10px;
+    a {
+      gap: 7px;
+      font-size: 13px;
+    }
+  }
+}
+.status-tabs a.active {
+  color: $green;
+  border-bottom-color: $green;
+  span {
+    background: #e0f1e7;
+    color: $green;
+  }
+}

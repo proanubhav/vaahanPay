@@ -1,0 +1,161 @@
+@use "../styles/tokens" as *;
+@use "../styles/common";
+
+:host {
+  display: block;
+  color: $ink;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.add-vehicle-popup {
+  position: relative;
+  padding: 34px;
+}
+.close-button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid $line;
+  border-radius: 50%;
+  background: white;
+  color: $muted;
+  cursor: pointer;
+  &:hover {
+    color: $ink;
+    background: #f5f8f6;
+  }
+}
+.popup-icon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 24px;
+  border: 1px solid #cfeadb;
+  border-radius: 17px;
+  background: #e9f8ef;
+  color: $green;
+  .icon {
+    width: 31px;
+    height: 31px;
+  }
+}
+h2 {
+  margin-top: 9px;
+  font-size: 29px;
+  font-weight: 500;
+  letter-spacing: -0.8px;
+}
+.popup-description {
+  margin-top: 10px;
+  color: $muted;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.registration-field {
+  margin-top: 28px;
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    span {
+      color: $green;
+    }
+  }
+  > p {
+    margin-top: 9px;
+    color: $muted;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+}
+.registration-input {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 16px;
+  border: 1px solid #cbded2;
+  border-radius: 10px;
+  background: #f8fcf9;
+  &:focus-within {
+    border-color: $green;
+    outline: 3px solid #e1f4e9;
+  }
+  > span {
+    padding-right: 14px;
+    border-right: 1px solid #cfdfd5;
+    color: $green;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  input {
+    width: 100%;
+    min-width: 0;
+    padding: 17px 0;
+    border: 0;
+    outline: 0;
+    color: $ink;
+    background: transparent;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    &::placeholder {
+      color: #899b90;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: none;
+    }
+  }
+}
+.vehicle-benefits {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 23px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #edf7f0;
+  color: $green;
+  strong {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  p {
+    margin-top: 4px;
+    color: $muted;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+}
+.popup-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  .button {
+    flex: 1;
+    min-height: 46px;
+  }
+}
+.button-secondary {
+  border-color: #d6e2d9;
+  background: white;
+  color: $ink;
+  &:hover {
+    background: #f5f8f6;
+  }
+}
+@media (max-width: 480px) {
+  .add-vehicle-popup {
+    padding: 26px 22px;
+  }
+  h2 {
+    font-size: 26px;
+  }
+}
