@@ -757,6 +757,7 @@ nav {
   width: 120%;
   height: 95%;
   left: -10%;
+  top: 2%;
   color: var(--home-accent-soft);
 }
 
@@ -1657,6 +1658,7 @@ nav {
     color: #303d48;
     font: var(--mat-sys-body-large);
     font-size: 18px;
+    text-transform: uppercase;
     letter-spacing: 0.6px;
 
     &::placeholder {
@@ -2236,7 +2238,7 @@ nav {
 
 .challan-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
   gap: 24px;
 }
 

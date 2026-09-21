@@ -508,94 +508,121 @@
                 </div>
             </section>
 
-            <section class="community-section" aria-labelledby="community-title">
-                <div class="travel-heading">
-                    <p class="travel-eyebrow">Built for Indian vehicle owners</p>
-                    <h2 id="community-title">A Simpler Way to Manage Traffic Challans</h2>
-                    <p class="section-intro">
-                        Built for Indian vehicle owners who want a faster, clearer and more
-                        convenient way to check and manage their vehicle challans online.
-                    </p>
-                    <span class="heading-rule" aria-hidden="true"></span>
-                </div>
+            <div class="travel-sections">
+                <!-- Reusable, self-contained artwork for the community and app previews. -->
+                <svg class="art-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                        <symbol id="traveller-avatar" viewBox="0 0 64 64">
+                            <circle cx="32" cy="32" r="32" fill="var(--avatar-bg, #d6f8ec)" />
+                            <path d="M9 64c0-16 8-24 23-24s23 8 23 24" fill="var(--avatar-shirt, #303d48)" />
+                            <path d="M26 36h12v12c-4 5-9 5-12 0" fill="var(--avatar-skin, #c98f6b)" />
+                            <ellipse cx="32" cy="27" rx="14" ry="18" fill="var(--avatar-skin, #c98f6b)" />
+                            <path d="M18 29C10 9 26 4 34 7c16-2 17 14 11 25l-3-15c-8 6-14 2-19 4l-3 10Z"
+                                fill="var(--avatar-hair, #34424c)" />
+                            <path d="M25 28h2m11 0h2m-9 10c2 2 5 2 7-1" fill="none" stroke="#303d48" stroke-width="1.5"
+                                stroke-linecap="round" />
+                        </symbol>
+                        <symbol id="travel-landscape" viewBox="0 0 180 100">
+                            <path fill="#c5f3e5" d="M0 0h180v100H0Z" />
+                            <circle cx="126" cy="26" r="15" fill="#f0fff6" />
+                            <path d="m0 79 44-58 39 46 32-29 65 49v13H0Z" fill="#70c8ad" />
+                            <path d="m22 100 68-78 44 55 27-26 19 23v26Z" fill="#348776" />
+                            <path d="m90 22-16 19 15-5 12 8Z" fill="#effcf6" />
+                            <path d="M0 90c50-30 109 34 180-9v19H0Z" fill="#214c48" />
+                            <g fill="#303d48">
+                                <path
+                                    d="m19 50-13 33h9v17h8V83h9Zm132 3-12 32h8v15h8V85h9Zm-13 10-10 24h7v13h6V87h7Z" />
+                            </g>
+                        </symbol>
+                    </defs>
+                </svg>
+                <section class="community-section" aria-labelledby="community-title">
+                    <div class="travel-heading">
+                        <p class="travel-eyebrow">Built for Indian vehicle owners</p>
+                        <h2 id="community-title">A Simpler Way to Manage Traffic Challans</h2>
+                        <p class="section-intro">
+                            Built for Indian vehicle owners who want a faster, clearer and more
+                            convenient way to check and manage their vehicle challans online.
+                        </p>
+                        <span class="heading-rule" aria-hidden="true"></span>
+                    </div>
 
-        <div
-          class="community-map"
-          role="group"
-          aria-label="Vehicle challan checking and management"
-        >
-          <svg
-            class="community-route"
-            viewBox="0 0 1100 420"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M-60 70C58 280 167 30 301 136S444 303 583 159 733 335 846 256 989 195 1160 229"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="3"
-            />
-                    </svg>
-                    <span class="travel-blob map-blob" aria-hidden="true"></span>
-          <span
-            class="travel-blob satellite-blob satellite-left"
-            aria-hidden="true"
-          ></span>
-          <span
-            class="travel-blob satellite-blob satellite-right"
-            aria-hidden="true"
-          ></span>
+                    <div class="community-map" role="group"
+                        aria-label="A community of travellers from around the world">
+                        <svg class="world-map" viewBox="0 0 1000 470" aria-hidden="true">
+                            <defs>
+                                <pattern id="world-dots" width="7" height="7" patternUnits="userSpaceOnUse">
+                                    <circle cx="3" cy="3" r="2" fill="#dce5e1" />
+                                </pattern>
+                            </defs>
+                            <g fill="url(#world-dots)">
+                                <path
+                                    d="m92 100 40-25 39 5 20-21 59-8 31-22 28 12-9 25-36 18 18 18-23 28-21 8-7 39-25 15-8 28-24-5-17-35-40-13-11-30-25-10Zm163 96 23 4 11 20 34 6 30 31-13 47-25 29-14 48-19 16-13-28-6-52-24-35-3-40-26-22Zm72-158 43-21 41 8-13 42-36 29-22-13Z" />
+                                <path
+                                    d="m426 107 29-27 29 7 11-28 29 10 16 26-6 23-39 9-7 27-37-10-12 18-30-9Zm29 58 58-12 42 28 25 53-24 34-15 49-29 26-22-17-12-61-31-11-28-40Zm100 133 13 10-8 32-14-6Z" />
+                                <path
+                                    d="m539 69 41-21 40 12 30-20 58 14 31 17 64-5 25 25 54 7-9 29-38 14-15 38-33 3-12 34-34-9-7 43-27 9-26-45-20 1-20-42-42 8-18-24-27 11-25-34Zm154 182 29 9 15 28 25 3 18 24-41-9-22-22-20-5Zm108-55 11 12-5 24-13-6Zm-9 137 25-25 45 5 31 37-9 33-53 4-29-16-28-7Zm110 51 12 5-12 27-12 11-5-9Z" />
+                            </g>
+                        </svg>
+                        <svg class="community-route" viewBox="0 0 1100 420" preserveAspectRatio="none"
+                            aria-hidden="true">
+                            <path d="M-60 70C58 280 167 30 301 136S444 303 583 159 733 335 846 256 989 195 1160 229"
+                                fill="none" stroke="currentColor" stroke-width="3" />
+                        </svg>
+                        <span class="travel-blob map-blob" aria-hidden="true"></span>
+                        <span class="travel-blob satellite-blob satellite-left" aria-hidden="true"></span>
+                        <span class="travel-blob satellite-blob satellite-right" aria-hidden="true"></span>
 
-                    <div class="map-person person-smith">
-                        <svg class="avatar" aria-hidden="true">
-                            <use href="#vehicle-car" />
-                        </svg>
-                        <strong>Cars</strong><span>Challan check</span>
-                    </div>
-                    <div class="map-person person-jessica">
-                        <svg class="avatar avatar-jessica" aria-hidden="true">
-                            <use href="#vehicle-bike" />
-                        </svg>
-                        <strong>Bikes</strong><span>Pending fines</span>
-                    </div>
-                    <div class="map-person person-julia">
-                        <svg class="avatar avatar-julia" aria-hidden="true">
-                            <use href="#vehicle-scooter" />
-                        </svg>
-                        <strong>Scooters</strong><span>Challan details</span>
-                    </div>
-                    <div class="map-person person-farhan">
-                        <svg class="avatar avatar-farhan" aria-hidden="true">
-                            <use href="#vehicle-truck" />
-                        </svg>
-                        <strong>Commercial</strong><span>Payment options</span>
-                    </div>
-                    <div class="map-person person-sojon">
-                        <svg class="avatar avatar-sojon" aria-hidden="true">
-                            <use href="#vehicle-van" />
-                        </svg>
-                        <strong>Your vehicle</strong><span>One place</span>
-                    </div>
-                    <div class="destination-card">
-                        <svg class="destination-photo" aria-hidden="true">
-                            <use href="#vehicle-car" />
-                        </svg>
-                        <strong>Clear. Simple. Convenient.</strong>
-                        <div class="avatar-stack" aria-hidden="true">
+                        <div class="map-person person-smith">
                             <svg class="avatar" aria-hidden="true">
-                                <use href="#vehicle-car" />
+                                <use href="#traveller-avatar" />
                             </svg>
+                            <strong>Amit Kumar</strong><span>Saved ₹2500</span>
+                        </div>
+                        <div class="map-person person-jessica">
                             <svg class="avatar avatar-jessica" aria-hidden="true">
-                                <use href="#vehicle-car" />
+                                <use href="#traveller-avatar" />
                             </svg>
+                            <strong>Sanjay</strong><span>Saved ₹2200</span>
+                        </div>
+                        <div class="map-person person-julia">
+                            <svg class="avatar avatar-julia" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <strong>Ashish</strong><span>Saved ₹1800</span>
+                        </div>
+                        <div class="map-person person-farhan">
                             <svg class="avatar avatar-farhan" aria-hidden="true">
-                                <use href="#vehicle-car" />
+                                <use href="#traveller-avatar" />
                             </svg>
+                            <strong>Vinay</strong><span>Saved ₹2000</span>
+                        </div>
+                        <div class="map-person person-sojon">
+                            <svg class="avatar avatar-sojon" aria-hidden="true">
+                                <use href="#traveller-avatar" />
+                            </svg>
+                            <strong>Rakit</strong><span>Saved ₹1500</span>
+                        </div>
+                        <div class="destination-card">
+                            <svg class="destination-photo" viewBox="0 0 180 100" aria-hidden="true">
+                                <use href="#travel-landscape" />
+                            </svg>
+                            <strong>Save on your challans</strong>
+                            <div class="avatar-stack" aria-label="Three travellers are visiting">
+                                <svg class="avatar" aria-hidden="true">
+                                    <use href="#traveller-avatar" />
+                                </svg>
+                                <svg class="avatar avatar-jessica" aria-hidden="true">
+                                    <use href="#traveller-avatar" />
+                                </svg>
+                                <svg class="avatar avatar-farhan" aria-hidden="true">
+                                    <use href="#traveller-avatar" />
+                                </svg>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
             <section class="content-section" aria-labelledby="challan-types-title">
                 <div class="travel-heading">
@@ -810,7 +837,7 @@
                         <use href="#vehicle-car" />
                     </svg>
                     <input id="footer-vehicle-number" name="vehicleNumber" type="text"
-                        placeholder="Enter Vehicle Number" autocomplete="off" autocapitalize="characters"
+                        placeholder="DL 02 AS 2367" autocomplete="off" autocapitalize="characters"
                         spellcheck="false" maxlength="20" pattern=".*\S.*" required />
                 </div>
                 <button class="vehicle-tracker-submit" type="submit">
@@ -822,7 +849,7 @@
 </main>
 
 @if (loginNotice()) {
-    <p class="container" role="status">{{ loginNotice() }}</p>
+<p class="container" role="status">{{ loginNotice() }}</p>
 }
 
 <footer class="home-footer">
