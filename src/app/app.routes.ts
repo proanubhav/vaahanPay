@@ -8,7 +8,7 @@ export const routes: Routes = [
     title: "VaahanPay – Check & Pay Vehicle Challan Online | E Challan Payment",
   },
   {
-    path: "user-panel",
+    path: "user",
     loadChildren: () =>
       import("./features/user-panel/user-panel.module").then(
         (m) => m.UserPanelModule,

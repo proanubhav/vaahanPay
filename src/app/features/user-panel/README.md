@@ -4,12 +4,12 @@ Run `npm start`, then open one of the independent routes:
 
 | URL | Component |
 | --- | --- |
-| `/user-panel` | Redirects to My Vehicles |
-| `/user-panel/my-vehicles` | `MyVehiclesComponent` |
-| `/user-panel/challans` | `ChallansComponent`, defaults to Pending |
-| `/user-panel/challans/pending` | `PendingChallansComponent` |
-| `/user-panel/challans/in-progress` | `InProgressChallansComponent` |
-| `/user-panel/challans/closed` | `ClosedChallansComponent` |
+| `/user` | Redirects to My Vehicles |
+| `/user/my-vehicles` | `MyVehiclesComponent` |
+| `/user/challans` | `ChallansComponent`, defaults to Pending |
+| `/user/challans/pending` | `PendingChallansComponent` |
+| `/user/challans/in-progress` | `InProgressChallansComponent` |
+| `/user/challans/closed` | `ClosedChallansComponent` |
 
 `UserPanelComponent` owns only the shared account shell (header, navigation,
 profile summary, statistics, footer, and router outlet). `ChallansComponent`
