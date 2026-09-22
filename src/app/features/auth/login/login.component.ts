@@ -71,6 +71,14 @@ export class LoginComponent {
         Validators.maxLength(100),
       ],
     }),
+    vehicleNumber: new FormControl(this.data.vehicleNumber ?? '', {
+      nonNullable: true,
+      validators: [
+        ...(!this.isLogin ? [Validators.required] : []),
+        Validators.pattern(/^(?=.*[a-zA-Z0-9])[a-zA-Z0-9\s-]+$/),
+        Validators.maxLength(20),
+      ],
+    }),
     mobile: new FormControl('', {
       nonNullable: true,
       validators: [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)],
@@ -91,12 +99,14 @@ export class LoginComponent {
     this.form.markAllAsTouched();
     if (this.form.invalid) return;
     const value = this.form.getRawValue();
+    const vehicleNumber = value.vehicleNumber
+      .replace(/[\s-]/g, '')
+      .toUpperCase();
+    this.form.controls.vehicleNumber.setValue(vehicleNumber);
     this.requestOtp({
       mobile: value.mobile,
       ...(!this.isLogin ? { name: value.name.trim() } : {}),
-      ...(this.data.vehicleNumber
-        ? { vehicleNumber: this.data.vehicleNumber }
-        : {}),
+      ...(vehicleNumber ? { vehicleNumber } : {}),
     });
   }
 
@@ -243,8 +253,8 @@ export class LoginComponent {
           }
           this.dialog.close({
             verified: true,
-            ...(this.data.vehicleNumber
-              ? { vehicleNumber: this.data.vehicleNumber }
+            ...(this.details?.vehicleNumber
+              ? { vehicleNumber: this.details.vehicleNumber }
               : {}),
           });
         },

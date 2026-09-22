@@ -35,11 +35,27 @@ export class HomeComponent {
   protected readonly headerHeight = signal(0);
   protected readonly isScrolled = signal(false);
   protected readonly loginNotice = signal('');
+  protected readonly vehicleNumber = signal('');
 
-  protected openLogin(event?: Event): void {
+  protected onVehicleNumberInput(event: Event): void {
+    this.vehicleNumber.set((event.target as HTMLInputElement).value);
+  }
+
+  protected openChallan(event: Event): void {
+    event.preventDefault();
+    this.openLogin(undefined, 'vehicle');
+  }
+
+  protected openLogin(
+    event?: Event,
+    mode: 'login' | 'vehicle' = 'login',
+  ): void {
     event?.preventDefault();
     if (this.dialog.getDialogById('vehicle-login')) return;
-    let data: LoginDialogData = { mode: 'login' };
+    let data: LoginDialogData = {
+      mode,
+      vehicleNumber: this.vehicleNumber().replace(/\s/g, '').toUpperCase(),
+    };
     if (event) {
       const form = event.target as HTMLFormElement;
       if (!form.reportValidity()) return;
@@ -49,6 +65,7 @@ export class HomeComponent {
         .replace(/\s/g, '')
         .toUpperCase();
       if (!vehicleNumber) return;
+      this.vehicleNumber.set(vehicleNumber);
       data = { mode: 'vehicle', vehicleNumber };
     }
     this.loginNotice.set('');
@@ -72,8 +89,10 @@ export class HomeComponent {
       .afterClosed()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((result) => {
-        if (result?.verified)
+        if (result?.verified) {
+          this.vehicleNumber.set(result.vehicleNumber ?? '');
           this.loginNotice.set('Your mobile number has been verified.');
+        }
       });
   }
 

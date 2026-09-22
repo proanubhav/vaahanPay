@@ -30,19 +30,19 @@
   >
     <span class="active"></span><span [class.active]="step() === 'otp'"></span>
   </div>
-  @if (data.vehicleNumber) {
-    <span class="vehicle-badge">{{ data.vehicleNumber }}</span>
+  @if (step() === "otp" && form.controls.vehicleNumber.value) {
+    <span class="vehicle-badge">{{ form.controls.vehicleNumber.value }}</span>
   }
 
-  @if (step() === 'details') {
+  @if (step() === "details") {
     <h2 id="login-title">
-      {{ isLogin ? 'Welcome back' : 'Enter your details' }}
+      {{ isLogin ? "Welcome back" : "Enter your details" }}
     </h2>
     <p id="login-description" class="description">
       {{
         isLogin
-          ? 'Log in with your mobile number. No password needed.'
-          : 'We’ll send you an OTP to verify your number.'
+          ? "Log in with your mobile number. No password needed."
+          : "We’ll send you an OTP to verify your number."
       }}
     </p>
 
@@ -104,11 +104,42 @@
           }
         </small>
       </div>
+      <div class="field">
+        <label for="login-vehicle-number"
+          >Vehicle number{{ isLogin ? " (optional)" : "" }}</label
+        >
+        <input
+          id="login-vehicle-number"
+          class="vehicle-number-input"
+          type="text"
+          formControlName="vehicleNumber"
+          placeholder="e.g. DL 01 AB 1234"
+          autocomplete="off"
+          autocapitalize="characters"
+          spellcheck="false"
+          maxlength="20"
+          [required]="!isLogin"
+          [readOnly]="busy()"
+          aria-describedby="vehicle-number-error"
+          [attr.aria-invalid]="
+            form.controls.vehicleNumber.touched &&
+            form.controls.vehicleNumber.invalid
+          "
+        />
+        <small id="vehicle-number-error" class="field-error">
+          @if (
+            form.controls.vehicleNumber.touched &&
+            form.controls.vehicleNumber.invalid
+          ) {
+            Enter a valid vehicle number using letters and numbers.
+          }
+        </small>
+      </div>
       @if (error()) {
         <p class="request-error" role="alert">{{ error() }}</p>
       }
       <button class="primary-button" type="submit" [disabled]="busy()">
-        {{ busy() ? 'Sending OTP…' : 'Send OTP' }}
+        {{ busy() ? "Sending OTP…" : "Send OTP" }}
         <span aria-hidden="true">→</span>
       </button>
     </form>
@@ -191,10 +222,10 @@
       >
         {{
           busy()
-            ? 'Please wait…'
+            ? "Please wait…"
             : isLogin
-              ? 'Verify & log in'
-              : 'Check Challans'
+              ? "Verify & log in"
+              : "Check Challans"
         }}
         <span aria-hidden="true">→</span>
       </button>

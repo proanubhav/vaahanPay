@@ -144,6 +144,14 @@ input {
     border-color: #b3261e;
   }
 }
+.vehicle-number-input {
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  &::placeholder {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+}
 .mobile-field {
   display: flex;
   align-items: center;

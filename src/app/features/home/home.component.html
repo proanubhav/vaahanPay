@@ -10,7 +10,7 @@
             </a>
             <nav class="mobility-nav" aria-label="Main navigation">
                 <a href="#top">Home</a>
-                <a href="#check-challan">Check Challan</a>
+                <a href="#why-us">Why us</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#why-us">Benefits</a>
                 <a href="#faq-title">FAQ</a>
@@ -148,6 +148,7 @@
                                             <use href="#vehicle-car" />
                                         </svg>
                                         <input id="vehicle-number" name="vehicleNumber" type="text"
+                                            [value]="vehicleNumber()" (input)="onVehicleNumberInput($event)"
                                             placeholder="DL 01 AB 1234" aria-describedby="vehicle-number-hint"
                                             autocomplete="off" autocapitalize="characters" spellcheck="false"
                                             maxlength="20" pattern=".*\S.*" required />
@@ -824,7 +825,7 @@
                     payments online.
                 </p>
                 <div class="account-banner-actions">
-                    <a class="account-action account-action-primary" href="#check-challan">Check Challan <span
+                    <a class="account-action account-action-primary" href="#check-challan" (click)="openChallan($event)">Check Challan <span
                             aria-hidden="true">→</span></a><a class="account-action account-action-secondary"
                         href="#how-it-works">How It Works</a>
                 </div>
@@ -837,6 +838,7 @@
                         <use href="#vehicle-car" />
                     </svg>
                     <input id="footer-vehicle-number" name="vehicleNumber" type="text"
+                        [value]="vehicleNumber()" (input)="onVehicleNumberInput($event)"
                         placeholder="DL 02 AS 2367" autocomplete="off" autocapitalize="characters"
                         spellcheck="false" maxlength="20" pattern=".*\S.*" required />
                 </div>
@@ -865,7 +867,7 @@
             <div>
                 <h2>Quick Links</h2>
                 <nav aria-label="Footer navigation">
-                    <a href="#top">Home</a><a href="#check-challan">Check Challan</a><a href="#how-it-works">How It
+                    <a href="#top">Home</a><a href="#check-challan" (click)="openChallan($event)">Check Challan</a><a href="#how-it-works">How It
                         Works</a><a href="#why-us">Benefits</a><a href="#faq-title">FAQs</a>
                 </nav>
             </div>

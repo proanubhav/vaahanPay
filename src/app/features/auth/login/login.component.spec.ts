@@ -100,6 +100,57 @@ describe('LoginComponent', () => {
     ).toBe('true');
   });
 
+  it('prefills the vehicle input and uses edits throughout the OTP flow', () => {
+    render();
+    expect(
+      fixture.nativeElement.querySelector('#login-vehicle-number').value,
+    ).toBe('DL01AB1234');
+    input('#login-vehicle-number', 'hr 29-bb 4896');
+    const request = requestCode();
+    expect(request.request.params.get('vehicleNumber')).toBe('HR29BB4896');
+    request.flush({ success: true, requestId: 'edited-vehicle' });
+    fixture.detectChanges();
+    expect(
+      fixture.nativeElement.querySelector('.vehicle-badge').textContent,
+    ).toContain('HR29BB4896');
+    pasteCode('1234');
+    verifyOtp.mockReturnValueOnce(of({ success: true }));
+    submit();
+    expect(verifyOtp).toHaveBeenCalledWith(
+      expect.objectContaining({
+        vehicleNumber: 'HR29BB4896',
+      }),
+    );
+    expect(close).toHaveBeenCalledWith({
+      verified: true,
+      vehicleNumber: 'HR29BB4896',
+    });
+  });
+
+  it('starts blank without a supplied number and requires it for challan checks', () => {
+    Object.assign(TestBed.inject(MAT_DIALOG_DATA), {
+      mode: 'vehicle',
+      vehicleNumber: undefined,
+    });
+    render();
+    expect(
+      fixture.nativeElement.querySelector('#login-vehicle-number').value,
+    ).toBe('');
+    input('#login-name', 'Test Driver');
+    input('#login-mobile', '9876543210');
+    input('#login-vehicle-number', '   ');
+    submit();
+    http.expectNone((request) => request.url === '/login');
+    expect(
+      fixture.nativeElement.querySelector('#vehicle-number-error').textContent,
+    ).toContain('Enter a valid vehicle number');
+    input('#login-vehicle-number', 'DL01AB1234');
+    submit();
+    const request = http.expectOne((request) => request.url === '/login');
+    expect(request.request.params.get('vehicleNumber')).toBe('DL01AB1234');
+    request.flush({ success: true });
+  });
+
   it('sends GET /login and only advances after a successful response', () => {
     render();
     const request = requestCode();
