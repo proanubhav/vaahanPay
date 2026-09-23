@@ -1,15 +1,15 @@
 @use "../styles/common";
 :host {
   display: block;
-  margin-top: 24px;
+  margin-top: 16px;
 }
 .history-heading,
 .history-toolbar {
-  padding: 24px;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 12px;
 }
 .history-heading .muted,
 .history-toolbar .muted {
@@ -25,7 +25,7 @@
   display: flex;
   gap: 8px;
   border-block: 1px solid #e5ebe7;
-  padding: 14px 24px;
+  padding: 10px 16px;
   flex-wrap: wrap;
 }
 .status-filters button {
@@ -61,11 +61,11 @@ summary:focus-visible {
 .challan-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-  padding: 0 24px 24px;
+  gap: 12px;
+  padding: 0 16px 16px;
 }
 .challan-card {
-  padding: 22px;
+  padding: 16px;
   border: 1px solid #dfe8e2;
   border-radius: 10px;
   min-width: 0;
@@ -98,7 +98,7 @@ summary:focus-visible {
   color: #23764b;
 }
 .challan-id {
-  margin: 20px 0 10px;
+  margin: 8px 0 6px;
   font-size: 12px;
   color: #7b887f;
   overflow-wrap: anywhere;
@@ -122,7 +122,7 @@ h3 {
   background: #f4f6f5;
   border-radius: 5px;
   padding: 5px 9px;
-  margin: 12px 0;
+  margin: 8px 0;
 }
 .progress-note {
   font-size: 13px;
@@ -133,7 +133,7 @@ h3 {
 }
 .settlement {
   display: flex;
-  gap: 20px;
+  gap: 12px;
   flex-wrap: wrap;
   font-size: 12px;
   padding: 12px;
@@ -150,7 +150,7 @@ h3 {
 details {
   border-top: 1px solid #e5ebe7;
   margin-top: 6px;
-  padding-top: 14px;
+  padding-top: 10px;
 }
 summary {
   cursor: pointer;
@@ -189,7 +189,7 @@ dd {
   .history-toolbar {
     align-items: flex-start;
     flex-direction: column;
-    padding: 20px;
+    padding: 16px;
   }
   .status-filters {
     padding: 12px;

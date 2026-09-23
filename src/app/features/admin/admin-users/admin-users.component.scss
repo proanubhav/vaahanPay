@@ -1,11 +1,32 @@
 @use "../styles/common";
 
+.page-heading {
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+}
+
+h1 {
+  margin-bottom: 6px;
+}
+
+h2 {
+  margin-bottom: 6px;
+}
+
+.state {
+  padding: 40px 20px;
+}
+
 .directory-toolbar {
-  padding: 24px;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
 }
 
 .directory-toolbar .muted {
@@ -39,12 +60,12 @@ th {
   color: #738178;
   font-size: 12px;
   font-weight: 500;
-  padding: 14px 24px;
+  padding: 10px 16px;
   border-block: 1px solid #e9eeeb;
 }
 
 td {
-  padding: 20px 24px;
+  padding: 12px 16px;
   border-bottom: 1px solid #eef2ef;
 }
 
@@ -55,12 +76,12 @@ tr:last-child td {
 .user-cell {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .user-cell small {
   display: block;
-  margin-top: 4px;
+  margin-top: 2px;
   color: #7c8981;
 }
 
@@ -71,7 +92,7 @@ tr:last-child td {
 
 .pagination {
   border-top: 1px solid #e9eeeb;
-  padding: 18px 24px;
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -82,7 +103,7 @@ tr:last-child td {
 
 .pagination > div {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -92,7 +113,7 @@ tr:last-child td {
   height: 12px;
   border-radius: 50%;
   background: #2d9961;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .sr-only {
@@ -107,7 +128,7 @@ tr:last-child td {
   .directory-toolbar {
     align-items: stretch;
     flex-direction: column;
-    padding: 20px;
+    padding: 16px;
   }
   .search-field {
     width: 100%;
@@ -148,4 +169,22 @@ tr:last-child td {
 .table-scroll:focus-visible {
   outline: 3px solid #7ccba2;
   outline-offset: -3px;
+}
+
+.search-field label {
+  margin-bottom: 4px;
+}
+
+.search-field input {
+  padding: 10px 12px;
+}
+
+.user-cell .avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 15px;
+}
+
+.pagination button {
+  padding: 8px 12px;
 }

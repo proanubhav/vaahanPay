@@ -1,40 +1,70 @@
 @use "../styles/common";
 
+.page-heading {
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  margin-bottom: 6px;
+}
+
+h1 {
+  margin-bottom: 6px;
+}
+
+h2 {
+  margin-bottom: 6px;
+}
+
+.state {
+  padding: 40px 20px;
+}
+
+.back-link {
+  margin-bottom: 12px;
+}
+
 .profile-summary {
   display: flex;
-  gap: 22px;
+  gap: 16px;
   align-items: center;
-  padding: 28px;
-  margin-bottom: 24px;
+  padding: 18px;
+  margin-bottom: 16px;
 }
 
 .profile-summary p {
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   overflow-wrap: anywhere;
 }
 
 .large {
-  height: 72px;
-  width: 72px;
-  font-size: 30px;
+  height: 56px;
+  width: 56px;
+  font-size: 24px;
 }
 
 .profile-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 24px;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
 }
 
 .details {
-  padding: 28px;
+  padding: 18px;
 }
 
 dl {
-  margin: 24px 0 0;
+  margin: 12px 0 0;
 }
 
 dl > div {
-  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 0;
   border-bottom: 1px solid #edf1ee;
 }
 
@@ -45,7 +75,7 @@ dl > div:last-child {
 dt {
   color: #7b887f;
   font-size: 13px;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
 dd {
@@ -64,8 +94,8 @@ dd {
 .vehicle {
   border: 1px solid #e1e8e3;
   border-radius: 8px;
-  padding: 18px;
-  margin-top: 16px;
+  padding: 12px;
+  margin-top: 10px;
 }
 
 .vehicle strong {
@@ -86,7 +116,7 @@ dd {
 @media (max-width: 700px) {
   .details,
   .profile-summary {
-    padding: 20px;
+    padding: 16px;
   }
 }
 
@@ -94,13 +124,13 @@ dd {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 .metric {
-  padding: 22px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 .metric span,
 .metric small {
@@ -108,7 +138,7 @@ dd {
   font-size: 13px;
 }
 .metric strong {
-  font-size: 27px;
+  font-size: 24px;
   overflow-wrap: anywhere;
   font-variant-numeric: tabular-nums;
 }
@@ -126,5 +156,16 @@ dd {
 @media (max-width: 450px) {
   .account-metrics {
     grid-template-columns: 1fr;
+  }
+}
+
+.profile-summary > div {
+  min-width: 0;
+}
+
+@media (max-width: 450px) {
+  dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }
