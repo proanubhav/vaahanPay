@@ -1,0 +1,345 @@
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">CHALLAN MANAGEMENT</p>
+    <h1>Challan requests</h1>
+    <p class="muted">
+      Review submissions, track payments and manage resolution.
+    </p>
+  </div>
+  <button (click)="reload()" [disabled]="busy() || !!selected()">
+    ↻ Refresh
+  </button>
+</div>
+@if (api.demo) {
+  <p class="demo-note">
+    Demo workspace · Sample payments and changes are kept only for this app
+    session.
+  </p>
+}
+@if (selected(); as request) {
+  <button class="back-button" (click)="close()" [disabled]="saving()">
+    ← Back to requests
+  </button>
+  <div class="request-layout">
+    <section class="panel details">
+      <div class="section-heading">
+        <h2>{{ request.id }}</h2>
+        <span class="status">{{
+          request.status === "in-progress"
+            ? "In progress"
+            : (request.status | titlecase)
+        }}</span>
+      </div>
+      <p class="offence">{{ request.offence }}</p>
+      <dl>
+        <div>
+          <dt>Customer</dt>
+          <dd>
+            <a [routerLink]="['/admin/users', request.userId]">{{
+              request.userName
+            }}</a>
+          </dd>
+        </div>
+        <div>
+          <dt>Mobile / email</dt>
+          <dd>
+            {{ request.mobile }}<br />{{
+              request.email || "Email not provided"
+            }}
+          </dd>
+        </div>
+        <div>
+          <dt>Vehicle</dt>
+          <dd>{{ request.vehicleNumber }}</dd>
+        </div>
+        <div>
+          <dt>Challan type</dt>
+          <dd>{{ request.type | titlecase }}</dd>
+        </div>
+        <div>
+          <dt>Issued on</dt>
+          <dd>{{ request.issuedAt | date: "dd MMM yyyy, h:mm a" }}</dd>
+        </div>
+        <div>
+          <dt>Submitted on</dt>
+          <dd>{{ request.submittedAt | date: "dd MMM yyyy, h:mm a" }}</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>{{ request.location }}</dd>
+        </div>
+        <div>
+          <dt>Authority</dt>
+          <dd>{{ request.authority }}</dd>
+        </div>
+        <div>
+          <dt>Challan amount</dt>
+          <dd>
+            {{
+              request.amount | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+            }}
+          </dd>
+        </div>
+        <div>
+          <dt>Payment status</dt>
+          <dd>{{ request.paymentStatus | titlecase }}</dd>
+        </div>
+        <div>
+          <dt>Customer payment</dt>
+          <dd>
+            {{
+              request.paymentAmount == null
+                ? "Not available"
+                : (request.paymentAmount
+                  | currency: "INR" : "symbol" : "1.2-2" : "en-IN")
+            }}
+          </dd>
+        </div>
+        <div>
+          <dt>Payment reference</dt>
+          <dd>{{ request.paymentReference || "Not available" }}</dd>
+        </div>
+        <div>
+          <dt>Paid on</dt>
+          <dd>
+            {{
+              request.paidAt
+                ? (request.paidAt | date: "dd MMM yyyy, h:mm a")
+                : "Not available"
+            }}
+          </dd>
+        </div>
+        @if (request.closedAt) {
+          <div>
+            <dt>Closed on</dt>
+            <dd>{{ request.closedAt | date: "dd MMM yyyy, h:mm a" }}</dd>
+          </div>
+        }
+        @if (request.receipt; as receipt) {
+          <div>
+            <dt>Receipt</dt>
+            <dd>
+              @if (receiptUrl(receipt.url); as url) {
+                <a [href]="url" target="_blank" rel="noopener noreferrer"
+                  >{{ receipt.name }} ↗</a
+                >
+              } @else {
+                Receipt unavailable
+              }
+            </dd>
+          </div>
+        }
+      </dl>
+    </section>
+    <div class="actions-column">
+      <section class="panel details">
+        <h2>Manage request</h2>
+        <form [formGroup]="form" (ngSubmit)="save(receiptInput)">
+          <label for="request-status">Resolution status</label>
+          <select id="request-status" formControlName="status">
+            <option value="pending">Pending</option>
+            <option value="in-progress">In progress</option>
+            <option value="closed">Closed</option>
+          </select>
+          <label for="request-remark">Add remark</label>
+          <textarea
+            id="request-remark"
+            formControlName="remark"
+            rows="4"
+            maxlength="2000"
+            placeholder="Add an update about this challan…"
+          ></textarea>
+          <small class="muted"
+            >Up to 2,000 characters. Saved remarks remain in the history.</small
+          >
+          <label for="request-receipt">{{
+            request.receipt ? "Replace receipt" : "Upload receipt"
+          }}</label>
+          <input
+            #receiptInput
+            id="request-receipt"
+            type="file"
+            accept="application/pdf,image/jpeg,image/png"
+            [disabled]="saving()"
+            (change)="chooseFile($event)"
+            aria-describedby="receipt-help"
+          />
+          <small id="receipt-help" class="muted"
+            >PDF, JPG or PNG · Maximum 5 MB</small
+          >
+          @if (fileError()) {
+            <p class="error" role="alert">{{ fileError() }}</p>
+          }
+          @if (actionError()) {
+            <p class="error" role="alert">{{ actionError() }}</p>
+          }
+          @if (message()) {
+            <p class="success" role="status">{{ message() }}</p>
+          }
+          <button
+            class="primary save"
+            type="submit"
+            [disabled]="saving() || form.invalid || !!fileError()"
+          >
+            {{ saving() ? "Saving…" : "Save changes" }}
+          </button>
+        </form>
+      </section>
+      <section class="panel details">
+        <h2>Remarks history</h2>
+        @for (remark of request.remarks; track $index) {
+          <article class="remark">
+            <p>{{ remark.text }}</p>
+            <small
+              >{{ remark.author }} ·
+              {{ remark.createdAt | date: "dd MMM yyyy, h:mm a" }}</small
+            >
+          </article>
+        } @empty {
+          <p class="muted">No remarks added yet.</p>
+        }
+      </section>
+    </div>
+  </div>
+} @else {
+  @if (message()) {
+    <p role="status">{{ message() }}</p>
+  }
+  @if (from() || attention() || paymentFilter() !== "all") {
+    <div class="dashboard-filters">
+      <span>
+        @if (from()) {
+          Submitted from {{ from() }} (UTC) ·
+        }
+        @if (attention()) {
+          Needs attention ·
+        }
+        @if (paymentFilter() !== "all") {
+          Payment: {{ paymentFilter() | titlecase }}
+        }</span
+      ><button (click)="clearDashboardFilters()">Clear filters</button>
+    </div>
+  }
+  <section
+    class="panel"
+    aria-label="Submitted challan requests"
+    [attr.aria-busy]="busy()"
+  >
+    <div class="toolbar">
+      <div class="search">
+        <label for="request-search">Search requests</label
+        ><input
+          #search
+          id="request-search"
+          type="search"
+          [value]="query()"
+          (input)="query.set(search.value); page.set(1)"
+          placeholder="Challan, vehicle, customer or payment reference"
+        />
+      </div>
+      <div>
+        <label for="request-filter">Status</label
+        ><select
+          #status
+          id="request-filter"
+          [value]="filter()"
+          (change)="filter.set(status.value); page.set(1)"
+        >
+          <option value="all">All statuses</option>
+          <option value="open">Open requests</option>
+          <option value="pending">Pending</option>
+          <option value="in-progress">In progress</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div>
+    </div>
+    @if (busy()) {
+      <div class="state" role="status">Loading challan requests…</div>
+    } @else if (error()) {
+      <div class="state" role="alert">
+        <p>{{ error() }}</p>
+        <button (click)="reload()">Try again</button>
+      </div>
+    } @else if (!matches().length) {
+      <div class="state">
+        {{
+          records().length
+            ? "No requests match your search or status filter."
+            : "No submitted challan requests yet."
+        }}
+      </div>
+    } @else {
+      <div
+        class="table-scroll"
+        tabindex="0"
+        role="region"
+        aria-label="Challan requests; scroll horizontally for all columns"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>Challan / vehicle</th>
+              <th>Customer</th>
+              <th>Submitted</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (request of visible(); track request.id) {
+              <tr>
+                <td>
+                  <strong>{{ request.id }}</strong
+                  ><small>{{ request.vehicleNumber }}</small>
+                </td>
+                <td>
+                  {{ request.userName }}<small>{{ request.mobile }}</small>
+                </td>
+                <td>{{ request.submittedAt | date: "dd MMM yyyy" }}</td>
+                <td>
+                  <span>{{ request.paymentStatus | titlecase }}</span
+                  ><small>{{
+                    request.paymentAmount == null
+                      ? "Amount unavailable"
+                      : (request.paymentAmount
+                        | currency: "INR" : "symbol" : "1.2-2" : "en-IN")
+                  }}</small>
+                </td>
+                <td>
+                  <span class="status">{{
+                    request.status === "in-progress"
+                      ? "In progress"
+                      : (request.status | titlecase)
+                  }}</span>
+                </td>
+                <td>
+                  <button
+                    (click)="open(request)"
+                    [attr.aria-label]="'Manage challan ' + request.id"
+                  >
+                    View / manage →
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <footer class="pagination">
+        <span>{{ matches().length }} requests</span>
+        <div>
+          <button (click)="page.set(page() - 1)" [disabled]="page() === 1">
+            Previous</button
+          ><span>Page {{ page() }} of {{ pages() }}</span
+          ><button
+            (click)="page.set(page() + 1)"
+            [disabled]="page() >= pages()"
+          >
+            Next
+          </button>
+        </div>
+      </footer>
+    }
+  </section>
+}

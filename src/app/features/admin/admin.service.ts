@@ -45,6 +45,7 @@ export const ADMIN_API_URL = new InjectionToken<string>("ADMIN_API_URL", {
 
 @Injectable({ providedIn: "root" })
 export class AdminService {
+  readonly demoUsers = structuredClone(ADMIN_DEMO_USERS);
   private readonly http = inject(HttpClient);
   private readonly base = inject(ADMIN_API_URL);
   private readonly useDemoData = inject(ADMIN_USE_DEMO_DATA);
@@ -79,7 +80,7 @@ export class AdminService {
   users(search: string, page: number, pageSize: number) {
     if (this.useDemoData) {
       const query = search.trim().toLowerCase();
-      const matches = ADMIN_DEMO_USERS.filter((user) =>
+      const matches = this.demoUsers.filter((user) =>
         [user.name, user.mobile, user.email ?? ""].some((value) =>
           value.toLowerCase().includes(query),
         ),
@@ -100,7 +101,7 @@ export class AdminService {
 
   user(id: string) {
     if (this.useDemoData) {
-      const user = ADMIN_DEMO_USERS.find((record) => record.id === id);
+      const user = this.demoUsers.find((record) => record.id === id);
       return user
         ? of(structuredClone(user))
         : throwError(

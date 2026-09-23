@@ -1,0 +1,111 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+text {
+  font: 12px sans-serif;
+  fill: #6c7d74;
+}
+.total {
+  font-size: 32px;
+  font-weight: 700;
+  fill: #233b32;
+}
+.value {
+  fill: #233b32;
+  font-weight: 600;
+}
+[role="link"] {
+  cursor: pointer;
+}
+[role="link"]:hover {
+  opacity: 0.75;
+}
+[role="link"]:focus-visible {
+  outline: 3px solid #176847;
+  outline-offset: 3px;
+}
+.donut-layout {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 205px;
+}
+.donut-layout svg {
+  width: 48%;
+  max-width: 220px;
+}
+.legend {
+  flex: 1;
+  min-width: 0;
+}
+.legend button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  width: 100%;
+  font: inherit;
+  font-size: 13px;
+  border: 0;
+  border-bottom: 1px solid #edf2ef;
+  background: transparent;
+  color: #526b5e;
+  cursor: pointer;
+  text-align: left;
+}
+.legend strong {
+  margin-left: auto;
+  color: #233b32;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: #587568;
+  margin-top: 10px;
+}
+table {
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  margin-top: 10px;
+  text-align: left;
+}
+caption {
+  text-align: left;
+  margin-bottom: 6px;
+}
+th,
+td {
+  padding: 6px;
+  border-bottom: 1px solid #edf2ef;
+}
+details[open] {
+  max-height: 240px;
+  overflow: auto;
+}
+.empty {
+  font-size: 13px;
+  color: #6c7d74;
+  text-align: center;
+}
+@media (max-width: 420px) {
+  .donut-layout {
+    gap: 8px;
+  }
+  .legend button {
+    font-size: 12px;
+  }
+}

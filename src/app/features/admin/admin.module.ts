@@ -1,3 +1,6 @@
+import { AdminDashboardComponent } from "./admin-dashboard/admin-dashboard.component";
+import { AdminChartComponent } from "./admin-dashboard/admin-chart.component";
+import { AdminRequestsComponent } from "./admin-requests/admin-requests.component";
 import localeEnIn from "@angular/common/locales/en-IN";
 import { AdminProfileChallansComponent } from "./admin-profile-challans/admin-profile-challans.component";
 import { NgModule } from "@angular/core";
@@ -13,6 +16,9 @@ registerLocaleData(localeEnIn);
 
 @NgModule({
   declarations: [
+    AdminDashboardComponent,
+    AdminChartComponent,
+    AdminRequestsComponent,
     AdminLoginComponent,
     AdminShellComponent,
     AdminUsersComponent,

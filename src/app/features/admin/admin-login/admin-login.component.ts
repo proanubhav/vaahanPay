@@ -54,9 +54,12 @@ export class AdminLoginComponent {
         next: () => {
           const url = this.route.snapshot.queryParamMap.get("returnUrl");
           void this.router.navigateByUrl(
-            url && /^\/admin\/users(?:\/[^?#]*)?(?:[?#].*)?$/.test(url)
+            url &&
+              /^\/admin\/(?:dashboard|challan-requests|users(?:\/[^?#]*)?)(?:[?#].*)?$/.test(
+                url,
+              )
               ? url
-              : "/admin/users",
+              : "/admin/dashboard",
           );
         },
         error: () =>

@@ -1,0 +1,263 @@
+@use "../styles/common";
+.page-heading {
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.eyebrow {
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+h1 {
+  font-size: 29px;
+  margin-bottom: 6px;
+}
+h2 {
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+.heading-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+select {
+  font: inherit;
+  font-size: 13px;
+  color: #294c3e;
+  padding: 10px 12px;
+  border: 1px solid #d5dfd9;
+  border-radius: 8px;
+  background: white;
+}
+select:focus-visible {
+  outline: 3px solid #7ccba2;
+  outline-offset: 3px;
+}
+.demo-note {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: #827041;
+  margin-bottom: 16px;
+}
+.demo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c59c4c;
+}
+.summary-caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: #6c7d74;
+  margin-bottom: 12px;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.metric {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #233b32;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.metric:hover {
+  border-color: #82b89d;
+  box-shadow: 0 4px 14px #1768470d;
+}
+.metric > span {
+  font-size: 13px;
+  color: #61796b;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.metric strong {
+  font-size: clamp(24px, 2.5vw, 32px);
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.metric small {
+  font-size: 11px;
+  color: #6c7d74;
+  line-height: 1.5;
+}
+.highlight {
+  background: #eef7f1;
+  border-color: #d3e8db;
+}
+.highlight strong {
+  color: #176847;
+}
+.arrow {
+  color: #8ba393;
+}
+.charts {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.chart,
+.operations {
+  padding: 18px;
+  min-width: 0;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.section-heading .muted {
+  font-size: 12px;
+}
+.pill {
+  background: #f3f6f4;
+  color: #6c7d74;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.operations {
+  background: #f3f8f5;
+  display: flex;
+  flex-direction: column;
+}
+.operations > .muted {
+  font-size: 13px;
+  max-width: 420px;
+}
+.action-total {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin: 20px 0;
+}
+.action-total strong {
+  font-size: 40px;
+  letter-spacing: -1px;
+}
+.action-total span {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.action-total small {
+  color: #6c7d74;
+  font-size: 11px;
+}
+.action-link {
+  display: flex;
+  justify-content: space-between;
+  background: #176847;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-top: auto;
+}
+.secondary-link {
+  font-size: 12px;
+  margin-top: 12px;
+}
+.recent > .section-heading {
+  padding: 18px;
+  margin: 0;
+}
+.section-heading > a {
+  font-size: 13px;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+  white-space: nowrap;
+}
+th {
+  background: #f7f9f8;
+  color: #738178;
+  font-size: 11px;
+  font-weight: 500;
+}
+th,
+td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #edf1ee;
+}
+tr:last-child td {
+  border: 0;
+}
+td small {
+  display: block;
+  color: #6c7d74;
+  margin-top: 4px;
+  font-size: 11px;
+}
+.task-reason {
+  display: inline-block;
+  background: #edf4ff;
+  color: #38689c;
+  border-radius: 6px;
+  padding: 5px 8px;
+  font-size: 11px;
+}
+.payment-issue {
+  background: #fff3df;
+  color: #996212;
+}
+.task-link {
+  font-weight: 600;
+}
+.state {
+  padding: 40px 18px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+@media (max-width: 1100px) {
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .charts {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .metrics {
+    gap: 10px;
+  }
+  .metric {
+    padding: 12px;
+    gap: 10px;
+  }
+  .metric > span {
+    font-size: 12px;
+  }
+  .chart,
+  .operations {
+    padding: 14px;
+  }
+}

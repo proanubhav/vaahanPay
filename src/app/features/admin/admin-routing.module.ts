@@ -1,3 +1,5 @@
+import { AdminDashboardComponent } from "./admin-dashboard/admin-dashboard.component";
+import { AdminRequestsComponent } from "./admin-requests/admin-requests.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminLoginComponent } from "./admin-login/admin-login.component";
@@ -18,7 +20,17 @@ const routes: Routes = [
     // canActivate: [adminGuard],
     // canActivateChild: [adminGuard],
     children: [
-      { path: "", pathMatch: "full", redirectTo: "users" },
+      {
+        path: "dashboard",
+        component: AdminDashboardComponent,
+        title: "Dashboard | VaahanPay Admin",
+      },
+      {
+        path: "challan-requests",
+        component: AdminRequestsComponent,
+        title: "Challan requests | VaahanPay Admin",
+      },
+      { path: "", pathMatch: "full", redirectTo: "dashboard" },
       {
         path: "users",
         component: AdminUsersComponent,
@@ -31,7 +43,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: "**", redirectTo: "users" },
+  { path: "**", redirectTo: "dashboard" },
 ];
 
 @NgModule({

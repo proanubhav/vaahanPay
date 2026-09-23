@@ -1,0 +1,153 @@
+@if (kind() === "donut") {
+  <div class="donut-layout">
+    <svg
+      viewBox="0 0 220 220"
+      [attr.role]="kind() === 'line' ? 'img' : 'group'"
+      [attr.aria-label]="label()"
+    >
+      <circle
+        cx="110"
+        cy="110"
+        r="79"
+        fill="none"
+        stroke="#edf2ef"
+        stroke-width="26"
+      />
+      <g transform="translate(110,110)">
+        @for (slice of slices(); track slice.key) {
+          @if (slice.value) {
+            <path
+              [attr.d]="slice.path"
+              [attr.fill]="slice.color"
+              tabindex="0"
+              role="link"
+              [attr.aria-label]="
+                slice.label + ': ' + slice.value + '. View requests'
+              "
+              (click)="choose.emit(slice.key)"
+              (keydown.enter)="choose.emit(slice.key)"
+            >
+              <title>{{ slice.label }}: {{ slice.value }}</title>
+            </path>
+          }
+        }
+        <text text-anchor="middle" y="0" class="total">{{ total() }}</text>
+        <text text-anchor="middle" y="22">requests</text>
+      </g>
+    </svg>
+    <div class="legend">
+      @for (item of data(); track item.key) {
+        <button (click)="choose.emit(item.key)">
+          <span class="dot" [style.background]="item.color"></span
+          ><span>{{ item.label }}</span
+          ><strong>{{ item.value }}</strong
+          ><span>↗</span>
+        </button>
+      }
+    </div>
+  </div>
+} @else {
+  <svg
+    viewBox="0 0 600 225"
+    [attr.role]="kind() === 'line' ? 'img' : 'group'"
+    [attr.aria-label]="label()"
+  >
+    @for (tick of plot().ticks; track tick.value) {
+      <line
+        x1="46"
+        x2="570"
+        [attr.y1]="tick.y"
+        [attr.y2]="tick.y"
+        stroke="#e8efeb"
+        stroke-dasharray="4 4"
+      />
+      <text x="34" [attr.y]="tick.y + 4" text-anchor="end">
+        {{ tick.value }}
+      </text>
+    }
+    @if (kind() === "line") {
+      <path [attr.d]="plot().area" fill="#e7f3ed" />
+      <path
+        [attr.d]="plot().line"
+        fill="none"
+        stroke="#268464"
+        stroke-width="2.5"
+      />
+      @for (point of plot().points; track point.key) {
+        <circle [attr.cx]="point.x" [attr.cy]="point.y" r="3" fill="#268464">
+          <title>{{ point.label }}: {{ point.value }} requests</title>
+        </circle>
+      }
+      @for (point of plot().labels; track point.key) {
+        <text [attr.x]="point.x" y="216" text-anchor="middle">
+          {{ point.label }}
+        </text>
+      }
+    } @else {
+      @for (point of plot().points; track point.key) {
+        <g
+          tabindex="0"
+          role="link"
+          [attr.aria-label]="
+            point.label + ': ' + point.value + '. View requests'
+          "
+          (click)="choose.emit(point.key)"
+          (keydown.enter)="choose.emit(point.key)"
+        >
+          <rect
+            [attr.x]="point.barX"
+            [attr.y]="point.y"
+            [attr.width]="point.width"
+            [attr.height]="point.height"
+            [attr.fill]="point.color"
+            rx="5"
+          >
+            <title>{{ point.label }}: {{ point.value }}</title>
+          </rect>
+          <text
+            [attr.x]="point.barX + point.width / 2"
+            [attr.y]="point.y - 7"
+            text-anchor="middle"
+            class="value"
+          >
+            {{ point.value }}
+          </text>
+          <text
+            [attr.x]="point.barX + point.width / 2"
+            y="216"
+            text-anchor="middle"
+          >
+            {{ point.label }}
+          </text>
+        </g>
+      }
+    }
+  </svg>
+}
+@if (!total()) {
+  <p class="empty">No requests in this period.</p>
+}
+<details>
+  <summary>View chart data</summary>
+  <table>
+    <caption>
+      {{
+        label()
+      }}
+    </caption>
+    <thead>
+      <tr>
+        <th>Category / date</th>
+        <th>Requests</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of data(); track item.key) {
+        <tr>
+          <td>{{ item.label }}</td>
+          <td>{{ item.value }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</details>

@@ -1,0 +1,219 @@
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">WORKSPACE OVERVIEW</p>
+    <h1>Admin dashboard</h1>
+    <p class="muted">Your operations, payments and next actions at a glance.</p>
+  </div>
+  <div class="heading-actions">
+    <label class="sr-only" for="dashboard-period">Analytics period</label
+    ><select
+      #period
+      id="dashboard-period"
+      [value]="days()"
+      (change)="days.set(+period.value)"
+    >
+      <option value="30">Last 30 days</option>
+      <option value="90">Last 90 days</option>
+      <option value="0">All time</option></select
+    ><button (click)="reload()" [disabled]="busy()">↻ Refresh</button>
+  </div>
+</div>
+@if (requestsApi.demo) {
+  <p class="demo-note">
+    <span class="demo-dot"></span>Demo analytics · Based on sample users and
+    challan requests.
+  </p>
+}
+@if (busy()) {
+  <section class="panel state" role="status">
+    Loading dashboard analytics…
+  </section>
+} @else if (error()) {
+  <section class="panel state" role="alert">
+    <p>{{ error() }}</p>
+    <button (click)="reload()">Try again</button>
+  </section>
+} @else {
+  <div class="summary-caption">
+    <span>{{ periodLabel() }} · Requests grouped by submission date (UTC)</span
+    ><span>Updated {{ updated() | date: "h:mm a" }}</span>
+  </div>
+  <section class="metrics" aria-label="Project metrics">
+    <a class="panel metric" routerLink="/admin/users"
+      ><span>Registered users <span class="arrow">↗</span></span
+      ><strong>{{ users() | number }}</strong
+      ><small>All registered accounts · All time</small></a
+    >
+    <a
+      class="panel metric"
+      routerLink="/admin/challan-requests"
+      [queryParams]="{ from: from() || null }"
+      ><span>Submitted requests <span class="arrow">↗</span></span
+      ><strong>{{ analytics().requests.length | number }}</strong
+      ><small>{{ analytics().closureRate }}% currently closed</small></a
+    >
+    <a
+      class="panel metric highlight"
+      routerLink="/admin/challan-requests"
+      [queryParams]="{ from: from() || null, paymentStatus: 'paid' }"
+      ><span>Customer payments <span class="arrow">↗</span></span
+      ><strong>{{
+        analytics().paidAmount | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+      }}</strong
+      ><small>Paid amounts for selected submissions</small>
+      @if (analytics().missingPaymentAmounts) {
+        <small
+          >{{ analytics().missingPaymentAmounts }} paid requests have no amount
+          recorded</small
+        >
+      }
+    </a>
+    <a
+      class="panel metric"
+      routerLink="/admin/challan-requests"
+      [queryParams]="{ from: from() || null, status: 'open' }"
+      ><span>Open requests <span class="arrow">↗</span></span
+      ><strong>{{ analytics().open | number }}</strong
+      ><small>Pending and in progress</small></a
+    >
+  </section>
+  <div class="charts">
+    <section class="panel chart trend">
+      <div class="section-heading">
+        <div>
+          <h2>Submission activity</h2>
+          <p class="muted">Requests received over time</p>
+        </div>
+        <span class="pill">{{ periodLabel() }}</span>
+      </div>
+      <app-admin-chart
+        kind="line"
+        label="Challan submissions over time"
+        [data]="analytics().trend"
+      />
+    </section>
+    <section class="panel chart">
+      <div class="section-heading">
+        <div>
+          <h2>Resolution breakdown</h2>
+          <p class="muted">Select a status to explore requests</p>
+        </div>
+      </div>
+      <app-admin-chart
+        kind="donut"
+        label="Requests by current resolution status"
+        [data]="analytics().statuses"
+        (choose)="openStatus($event)"
+      />
+    </section>
+    <section class="panel chart">
+      <div class="section-heading">
+        <div>
+          <h2>Payment overview</h2>
+          <p class="muted">Select a payment status to review</p>
+        </div>
+        <span class="pill">{{ analytics().payments[0].value }} paid</span>
+      </div>
+      <app-admin-chart
+        kind="bar"
+        label="Requests by payment status"
+        [data]="analytics().payments"
+        (choose)="openPayment($event)"
+      />
+    </section>
+    <section class="panel operations">
+      <p class="eyebrow">NEXT STEPS</p>
+      <h2>Keep requests moving</h2>
+      <p class="muted">
+        Review new submissions, follow up on payments and attach receipts to
+        completed challans.
+      </p>
+      <div class="action-total">
+        <strong>{{ tasks().length }}</strong
+        ><span
+          >requests need attention<br /><small
+            >Across all submission dates</small
+          ></span
+        >
+      </div>
+      <a
+        routerLink="/admin/challan-requests"
+        [queryParams]="{ attention: 'true' }"
+        class="action-link"
+        >Open action queue <span>→</span></a
+      ><a routerLink="/admin/users" class="secondary-link"
+        >Explore registered users →</a
+      >
+    </section>
+  </div>
+  <section class="panel recent">
+    <div class="section-heading">
+      <div>
+        <h2>Recent tasks for action</h2>
+        <p class="muted">Latest submissions needing attention · All time</p>
+      </div>
+      <a
+        routerLink="/admin/challan-requests"
+        [queryParams]="{ attention: 'true' }"
+        >View all {{ tasks().length }} →</a
+      >
+    </div>
+    @if (recentTasks().length) {
+      <div
+        class="table-scroll"
+        tabindex="0"
+        role="region"
+        aria-label="Recent admin tasks"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>Challan / vehicle</th>
+              <th>Customer</th>
+              <th>Submitted</th>
+              <th>Next action</th>
+              <th>Manage</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (task of recentTasks(); track task.id) {
+              <tr>
+                <td>
+                  <strong>{{ task.id }}</strong
+                  ><small>{{ task.vehicleNumber }}</small>
+                </td>
+                <td>
+                  <a [routerLink]="['/admin/users', task.userId]">{{
+                    task.userName
+                  }}</a>
+                </td>
+                <td>{{ task.submittedAt | date: "dd MMM yyyy" }}</td>
+                <td>
+                  <span
+                    class="task-reason"
+                    [class.payment-issue]="task.paymentStatus !== 'paid'"
+                    >{{ reason(task) }}</span
+                  >
+                </td>
+                <td>
+                  <a
+                    class="task-link"
+                    routerLink="/admin/challan-requests"
+                    [queryParams]="{ requestId: task.id }"
+                    [attr.aria-label]="'Manage challan ' + task.id"
+                    >Take action →</a
+                  >
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="state">
+        <h3>All caught up</h3>
+        <p class="muted">No challan requests need attention right now.</p>
+      </div>
+    }
+  </section>
+}

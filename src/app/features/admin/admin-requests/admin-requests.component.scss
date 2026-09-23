@@ -1,0 +1,197 @@
+@use "../styles/common";
+.page-heading {
+  margin-bottom: 18px;
+}
+.eyebrow {
+  margin-bottom: 6px;
+}
+h2 {
+  font-size: 18px;
+}
+.demo-note {
+  padding: 10px 14px;
+  background: #fff5df;
+  color: #805719;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.toolbar,
+.pagination,
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.toolbar,
+.pagination {
+  padding: 16px;
+  flex-wrap: wrap;
+}
+.search {
+  flex: 1;
+  min-width: 220px;
+  max-width: 500px;
+}
+label {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+input,
+select,
+textarea {
+  padding: 10px 12px;
+}
+select,
+textarea {
+  font: inherit;
+  border: 1px solid #d5dfd9;
+  border-radius: 8px;
+  background: white;
+  color: #233b32;
+}
+select:focus-visible,
+textarea:focus-visible,
+.table-scroll:focus-visible {
+  outline: 3px solid #7ccba2;
+  outline-offset: 3px;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+  white-space: nowrap;
+}
+th {
+  background: #f7f9f8;
+  font-size: 12px;
+  color: #6c7d74;
+}
+th,
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #edf1ee;
+}
+td small {
+  display: block;
+  margin-top: 4px;
+  color: #6c7d74;
+}
+.pagination {
+  font-size: 13px;
+}
+.pagination > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.back-button {
+  margin-bottom: 16px;
+}
+.request-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.details {
+  padding: 18px;
+}
+.section-heading {
+  flex-wrap: wrap;
+}
+.section-heading h2 {
+  overflow-wrap: anywhere;
+}
+.offence {
+  margin: 10px 0;
+}
+dl {
+  margin: 0;
+}
+dl > div {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #edf1ee;
+}
+dt {
+  color: #6c7d74;
+  font-size: 13px;
+}
+dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.actions-column {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+form label {
+  margin-top: 16px;
+}
+form select,
+textarea {
+  width: 100%;
+}
+textarea {
+  resize: vertical;
+}
+form small {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+}
+.save {
+  margin-top: 16px;
+}
+.success {
+  color: #176847;
+}
+.remark {
+  padding: 12px 0;
+  border-bottom: 1px solid #edf1ee;
+}
+.remark p {
+  margin-bottom: 6px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.remark small {
+  color: #6c7d74;
+}
+.state {
+  padding: 40px 16px;
+}
+@media (max-width: 1000px) {
+  .request-layout {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 500px) {
+  dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .details {
+    padding: 14px;
+  }
+}
+
+.dashboard-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #6c7d74;
+}
