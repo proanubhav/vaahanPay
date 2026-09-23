@@ -1,0 +1,61 @@
+<main class="login-page">
+  <section class="login-intro">
+    <a routerLink="/" class="brand">Vaahan<span>Pay</span></a>
+    <div>
+      <p class="eyebrow">ADMIN WORKSPACE</p>
+      <h1>A clearer view of<br />your community.</h1>
+      <p>
+        Access registered users and their profiles from one dedicated workspace.
+      </p>
+    </div>
+    <small>VaahanPay · Administration</small>
+  </section>
+  <section class="login-form-area">
+    <form class="login-card" [formGroup]="form" (ngSubmit)="submit()">
+      <span class="tag">ADMIN ACCESS</span>
+      <h2>Welcome back</h2>
+      <p class="muted">Sign in with your administrator account.</p>
+      <label for="admin-email">Email address</label>
+      <input
+        id="admin-email"
+        type="email"
+        formControlName="email"
+        autocomplete="username"
+        placeholder="you@company.com"
+        [attr.aria-invalid]="
+          form.controls.email.touched && form.controls.email.invalid
+        "
+      />
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <p class="error">Enter a valid email address.</p>
+      }
+      <label for="admin-password">Password</label>
+      <div class="password-field">
+        <input
+          id="admin-password"
+          [type]="showPassword() ? 'text' : 'password'"
+          formControlName="password"
+          autocomplete="current-password"
+          placeholder="Enter your password"
+        /><button
+          type="button"
+          (click)="showPassword.set(!showPassword())"
+          [attr.aria-pressed]="showPassword()"
+        >
+          {{ showPassword() ? "Hide" : "Show" }}
+        </button>
+      </div>
+      @if (form.controls.password.touched && form.controls.password.invalid) {
+        <p class="error">Enter your password.</p>
+      }
+      @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+      }
+      <button class="primary login-submit" type="submit" [disabled]="busy()">
+        {{ busy() ? "Signing in…" : "Sign in to admin" }}
+      </button>
+      <p class="access-note">Access is limited to authorized administrators.</p>
+      <a routerLink="/" class="back-link">← Back to VaahanPay</a>
+    </form>
+  </section>
+</main>

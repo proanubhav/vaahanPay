@@ -1,0 +1,112 @@
+@use "../styles/common";
+
+.tag {
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: #eaf5ee;
+  color: #176847;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 22px;
+}
+
+.login-page {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.login-intro {
+  background: #eaf3ed;
+  padding: 48px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 70px;
+}
+
+.login-intro h1 {
+  font-size: clamp(32px, 3.4vw, 52px);
+}
+
+.login-intro p:not(.eyebrow) {
+  color: #587062;
+  max-width: 370px;
+}
+
+.login-intro small {
+  color: #6c7d74;
+}
+
+.login-form-area {
+  display: grid;
+  place-items: center;
+  padding: 48px 24px;
+  background: #fff;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+}
+
+.login-card h2 {
+  font-size: 30px;
+}
+
+.login-card > .muted {
+  margin-bottom: 32px;
+}
+
+.login-card label {
+  margin-top: 22px;
+}
+
+.password-field {
+  display: flex;
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 70px;
+}
+
+.password-field button {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  border: 0;
+  padding: 10px;
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 26px;
+  padding: 14px;
+}
+
+.access-note {
+  color: #7b887f;
+  font-size: 12px;
+  text-align: center;
+  margin: 16px 0 26px;
+}
+
+@media (max-width: 700px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+  .login-intro {
+    padding: 24px;
+    gap: 20px;
+  }
+  .login-intro > div,
+  .login-intro small {
+    display: none;
+  }
+  .login-form-area {
+    padding: 40px 24px;
+  }
+}

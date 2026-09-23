@@ -1,0 +1,160 @@
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">USER MANAGEMENT</p>
+    <h1>Registered users</h1>
+    <p class="muted">Explore your community and view individual profiles.</p>
+  </div>
+  <button (click)="reload()" [disabled]="busy()">↻ Refresh</button>
+</div>
+<section class="panel" aria-label="Registered users" [attr.aria-busy]="busy()">
+  <div class="directory-toolbar">
+    <div>
+      <h2>User directory</h2>
+      <p class="muted" aria-live="polite">
+        {{ busy() ? "Loading users…" : result().total + " users found" }}
+      </p>
+    </div>
+    <div class="search-field">
+      <label for="user-search">Search users</label
+      ><input
+        id="user-search"
+        type="search"
+        [formControl]="search"
+        placeholder="Name, mobile or email"
+      />
+    </div>
+  </div>
+  @if (busy()) {
+    <div class="state" role="status">
+      <span class="loading-dot"></span>
+      <h3>Loading registered users…</h3>
+    </div>
+  } @else if (error()) {
+    <div class="state" role="alert">
+      <h3>Users couldn’t be loaded</h3>
+      <p>{{ error() }}</p>
+      <button class="primary" (click)="reload()">Try again</button>
+    </div>
+  } @else if (!result().users.length) {
+    <div class="state">
+      <h3>
+        {{ search.value ? "No matching users" : "No registered users yet" }}
+      </h3>
+      <p>
+        {{
+          search.value
+            ? "Try another name, mobile number or email."
+            : "Registered users will appear here when available."
+        }}
+      </p>
+      @if (search.value) {
+        <button (click)="search.setValue('')">Clear search</button>
+      }
+    </div>
+  } @else {
+    <div
+      class="table-scroll"
+      tabindex="0"
+      role="region"
+      aria-label="User metrics table; scroll horizontally for all columns"
+    >
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Mobile number</th>
+            <th scope="col">Registered on</th>
+            <th scope="col">Status</th>
+            <th scope="col" class="numeric">Total challans</th>
+            <th scope="col" class="numeric">Pending</th>
+            <th scope="col" class="numeric">In progress</th>
+            <th scope="col" class="numeric">Closed</th>
+            <th scope="col" class="numeric">Money saved</th>
+            <th scope="col" class="numeric">Wallet amount</th>
+            <th scope="col"><span class="sr-only">Profile</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of result().users; track user.id) {
+            @let metrics = summary(user);
+            <tr>
+              <td>
+                <div class="user-cell">
+                  <span class="avatar" aria-hidden="true">{{
+                    (user.name || "U").charAt(0).toUpperCase()
+                  }}</span>
+                  <div>
+                    <strong>{{ user.name || "Unnamed user" }}</strong
+                    ><small>{{ user.email || "Email not provided" }}</small>
+                  </div>
+                </div>
+              </td>
+              <td>{{ user.mobile }}</td>
+              <td>{{ user.registeredAt | date: "dd MMM yyyy" }}</td>
+              <td>
+                <span
+                  class="status"
+                  [class.inactive]="user.status !== 'active'"
+                  >{{ user.status | titlecase }}</span
+                >
+              </td>
+              <td class="numeric">
+                <strong>{{ metrics.total }}</strong>
+              </td>
+              <td class="numeric">
+                <span class="challan-count pending">{{ metrics.pending }}</span>
+              </td>
+              <td class="numeric">
+                <span class="challan-count progress">{{
+                  metrics.inProgress
+                }}</span>
+              </td>
+              <td class="numeric">
+                <span class="challan-count closed">{{ metrics.closed }}</span>
+              </td>
+              <td class="numeric savings">
+                {{
+                  metrics.moneySaved
+                    | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+                }}
+              </td>
+              <td class="numeric">
+                {{
+                  user.walletAmount ?? 0
+                    | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+                }}
+              </td>
+              <td>
+                <a
+                  class="profile-link"
+                  [routerLink]="['/admin/users', user.id]"
+                  [attr.aria-label]="'View profile for ' + user.name"
+                  >View profile →</a
+                >
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <footer class="pagination">
+      <span
+        >Showing {{ (page() - 1) * pageSize + 1 }}–{{
+          Math.min(page() * pageSize, result().total)
+        }}
+        of {{ result().total }}</span
+      >
+      <div>
+        <button (click)="changePage(-1)" [disabled]="page() === 1">
+          Previous</button
+        ><span>Page {{ page() }}</span
+        ><button
+          (click)="changePage(1)"
+          [disabled]="page() * pageSize >= result().total"
+        >
+          Next
+        </button>
+      </div>
+    </footer>
+  }
+</section>

@@ -1,0 +1,151 @@
+@use "../styles/common";
+
+.directory-toolbar {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.directory-toolbar .muted {
+  font-size: 13px;
+}
+
+.search-field {
+  width: 300px;
+  max-width: 100%;
+}
+
+.search-field label {
+  font-size: 12px;
+  color: #6c7d74;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+th {
+  background: #f7f9f8;
+  color: #738178;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 14px 24px;
+  border-block: 1px solid #e9eeeb;
+}
+
+td {
+  padding: 20px 24px;
+  border-bottom: 1px solid #eef2ef;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-cell small {
+  display: block;
+  margin-top: 4px;
+  color: #7c8981;
+}
+
+.profile-link {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.pagination {
+  border-top: 1px solid #e9eeeb;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: #6c7d74;
+}
+
+.pagination > div {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.loading-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2d9961;
+  margin-bottom: 18px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 700px) {
+  .directory-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 20px;
+  }
+  .search-field {
+    width: 100%;
+  }
+  .pagination {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+}
+
+.numeric {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.savings {
+  color: #23764b;
+  font-weight: 600;
+}
+.challan-count {
+  display: inline-block;
+  min-width: 28px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  text-align: center;
+}
+.pending {
+  color: #996212;
+  background: #fff5df;
+}
+.progress {
+  color: #3464a2;
+  background: #edf4ff;
+}
+.closed {
+  color: #23764b;
+  background: #eaf6ee;
+}
+.table-scroll:focus-visible {
+  outline: 3px solid #7ccba2;
+  outline-offset: -3px;
+}

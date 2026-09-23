@@ -1,0 +1,101 @@
+<a routerLink="/admin/users" class="back-link">← Back to registered users</a>
+<div class="page-heading">
+  <div>
+    <p class="eyebrow">USER MANAGEMENT</p>
+    <h1>User profile</h1>
+    <p class="muted">
+      Registration details, wallet balance, and challan history.
+    </p>
+  </div>
+</div>
+@if (busy()) {
+  <section class="panel state" role="status">Loading user profile…</section>
+} @else if (error()) {
+  <section class="panel state" role="alert">
+    <h2>Profile unavailable</h2>
+    <p>{{ error() }}</p>
+    <button class="primary" (click)="reload()">Try again</button>
+  </section>
+} @else if (user(); as profile) {
+  <section class="panel profile-summary">
+    <span class="avatar large" aria-hidden="true">{{
+      (profile.name || "U").charAt(0).toUpperCase()
+    }}</span>
+    <div>
+      <h2>{{ profile.name || "Unnamed user" }}</h2>
+      <p class="muted">User ID: {{ profile.id }}</p>
+      <span class="status" [class.inactive]="profile.status !== 'active'">{{
+        profile.status | titlecase
+      }}</span>
+    </div>
+  </section>
+  @let metrics = summary(profile);
+  <section class="account-metrics" aria-label="Wallet and challan summary">
+    <div class="panel metric financial">
+      <span>Wallet amount</span
+      ><strong>{{
+        profile.walletAmount ?? 0
+          | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+      }}</strong
+      ><small>Available balance</small>
+    </div>
+    <div class="panel metric financial">
+      <span>Money saved</span
+      ><strong>{{
+        metrics.moneySaved | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+      }}</strong
+      ><small>Savings on closed challans</small>
+    </div>
+    <div class="panel metric">
+      <span>Total challans</span><strong>{{ metrics.total }}</strong
+      ><small>{{ metrics.closed }} closed</small>
+    </div>
+    <div class="panel metric">
+      <span>Pending / In progress</span
+      ><strong>{{ metrics.pending }} / {{ metrics.inProgress }}</strong
+      ><small>Awaiting resolution</small>
+    </div>
+  </section>
+  <div class="profile-grid">
+    <section class="panel details">
+      <h2>Personal information</h2>
+      <dl>
+        <div>
+          <dt>Full name</dt>
+          <dd>{{ profile.name || "Not provided" }}</dd>
+        </div>
+        <div>
+          <dt>Mobile number</dt>
+          <dd>{{ profile.mobile || "Not provided" }}</dd>
+        </div>
+        <div>
+          <dt>Email address</dt>
+          <dd>{{ profile.email || "Not provided" }}</dd>
+        </div>
+        <div>
+          <dt>Registered on</dt>
+          <dd>{{ profile.registeredAt | date: "dd MMM yyyy, h:mm a" }}</dd>
+        </div>
+        <div>
+          <dt>Address</dt>
+          <dd>{{ profile.address || "Not provided" }}</dd>
+        </div>
+      </dl>
+    </section>
+    <section class="panel details">
+      <h2>
+        Linked vehicles
+        <span class="count">{{ profile.vehicles?.length || 0 }}</span>
+      </h2>
+      @for (vehicle of profile.vehicles; track $index) {
+        <div class="vehicle">
+          <strong>{{ vehicle.number }}</strong>
+          <p class="muted">{{ vehicle.make }} {{ vehicle.model }}</p>
+        </div>
+      } @empty {
+        <p class="muted">No linked vehicles.</p>
+      }
+    </section>
+  </div>
+  <app-admin-profile-challans [challans]="profile.challans ?? []" />
+}

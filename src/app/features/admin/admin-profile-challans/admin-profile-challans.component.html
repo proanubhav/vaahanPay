@@ -1,0 +1,162 @@
+<section class="panel history" aria-labelledby="challan-heading">
+  <div class="history-heading">
+    <div>
+      <h2 id="challan-heading">Challan history</h2>
+      <p class="muted">All challans across this user’s linked vehicles.</p>
+    </div>
+    <span class="total-count">{{ challans().length }} total</span>
+  </div>
+  <div class="status-filters" role="group" aria-label="Challan status">
+    @for (item of statuses; track item.value) {
+      <button
+        type="button"
+        [class.active]="status() === item.value"
+        [attr.aria-pressed]="status() === item.value"
+        (click)="selectStatus(item.value)"
+      >
+        {{ item.label }} <span>{{ count(item.value) }}</span>
+      </button>
+    }
+  </div>
+  <div class="history-toolbar">
+    <p class="muted" aria-live="polite">
+      {{ visible().length }}
+      {{ status() === "in-progress" ? "in progress" : status() }} challans ·
+      Original amount
+      <strong>{{
+        amount() | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+      }}</strong>
+    </p>
+    <div>
+      <label for="admin-challan-type">Challan type</label
+      ><select
+        id="admin-challan-type"
+        [value]="type()"
+        (change)="typeChanged($event)"
+      >
+        <option value="all">All types</option>
+        <option value="online">Online</option>
+        <option value="court">Court</option>
+      </select>
+    </div>
+  </div>
+  <div class="challan-grid">
+    @for (challan of visible(); track challan.id) {
+      <article class="challan-card">
+        <div class="card-top">
+          <span class="type-badge" [class.court]="challan.type === 'court'"
+            >{{ challan.type | titlecase }} challan</span
+          ><span
+            class="status-badge"
+            [class.progress]="challan.status === 'in-progress'"
+            [class.closed]="challan.status === 'closed'"
+            >{{
+              challan.status === "in-progress"
+                ? "In progress"
+                : (challan.status | titlecase)
+            }}</span
+          >
+        </div>
+        <p class="challan-id">#{{ challan.id }}</p>
+        <div class="challan-amount">
+          {{ challan.amount | currency: "INR" : "symbol" : "1.2-2" : "en-IN" }}
+        </div>
+        <h3>{{ challan.offence }}</h3>
+        <p class="muted challan-meta">
+          {{ challan.issuedAt | date: "dd MMM yyyy" }} · {{ challan.location }}
+        </p>
+        <p class="vehicle-number">{{ challan.vehicleNumber }}</p>
+        @if (challan.status === "in-progress") {
+          <p class="progress-note">
+            {{ challan.progressNote || "Resolution in progress." }}
+          </p>
+        }
+        @if (challan.status === "closed") {
+          <div class="settlement">
+            <span
+              >Paid
+              <strong>{{
+                challan.paidAmount != null
+                  ? (challan.paidAmount
+                    | currency: "INR" : "symbol" : "1.2-2" : "en-IN")
+                  : "Not available"
+              }}</strong></span
+            ><span
+              >Saved
+              <strong>{{
+                savings(challan)
+                  | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+              }}</strong></span
+            >
+          </div>
+        }
+        <details>
+          <summary>View challan details</summary>
+          <dl>
+            <div>
+              <dt>Challan number</dt>
+              <dd>{{ challan.id }}</dd>
+            </div>
+            <div>
+              <dt>Vehicle</dt>
+              <dd>{{ challan.vehicleNumber }}</dd>
+            </div>
+            <div>
+              <dt>Issuing authority</dt>
+              <dd>{{ challan.authority }}</dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>{{ challan.location }}</dd>
+            </div>
+            <div>
+              <dt>Issued on</dt>
+              <dd>{{ challan.issuedAt | date: "dd MMM yyyy, h:mm a" }}</dd>
+            </div>
+            <div>
+              <dt>Original amount</dt>
+              <dd>
+                {{
+                  challan.amount
+                    | currency: "INR" : "symbol" : "1.2-2" : "en-IN"
+                }}
+              </dd>
+            </div>
+            @if (challan.submittedAt) {
+              <div>
+                <dt>Submitted on</dt>
+                <dd>{{ challan.submittedAt | date: "dd MMM yyyy" }}</dd>
+              </div>
+            }
+            @if (challan.closedAt) {
+              <div>
+                <dt>Closed on</dt>
+                <dd>{{ challan.closedAt | date: "dd MMM yyyy" }}</dd>
+              </div>
+            }
+            @if (challan.paymentReference) {
+              <div>
+                <dt>Payment reference</dt>
+                <dd>{{ challan.paymentReference }}</dd>
+              </div>
+            }
+          </dl>
+        </details>
+      </article>
+    } @empty {
+      <div class="empty-state">
+        <h3>
+          No
+          {{ status() === "in-progress" ? "in progress" : status() }} challans
+        </h3>
+        <p class="muted">
+          {{
+            type() === "all"
+              ? "There are no challans in this category for this user."
+              : "No challans match the selected type."
+          }}
+        </p>
+      </div>
+    }
+  </div>
+</section>

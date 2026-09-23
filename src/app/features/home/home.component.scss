@@ -140,7 +140,7 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
@@ -200,7 +200,7 @@ nav {
 .subscribe-button {
   min-width: 165px;
   margin: -1px;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 1.5px;
 }
 
@@ -331,7 +331,7 @@ nav {
   }
 
   .eyebrow {
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: 19px;
     letter-spacing: 1px;
   }
@@ -407,7 +407,7 @@ nav {
     border-radius: 0 0 28px 28px;
 
     h3 {
-      font-size: 11px;
+      font-size: 13px;
       margin: 23px 0 16px;
     }
 
@@ -429,7 +429,7 @@ nav {
 @media (max-width: 700px) and (min-width: 601px) {
   nav {
     gap: 27px;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .hero {
@@ -484,7 +484,7 @@ nav {
     }
 
     input {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 
@@ -576,7 +576,7 @@ nav {
   }
 
   .eyebrow {
-    font-size: 11px;
+    font-size: 13px;
     margin-bottom: 18px;
   }
 
@@ -721,7 +721,7 @@ nav {
 .travel-eyebrow {
   margin: 0 0 16px !important;
   color: var(--home-muted);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 2.3px;
   text-transform: uppercase;
@@ -1050,7 +1050,7 @@ nav {
     }
 
     p {
-      font-size: 11px;
+      font-size: 13px;
     }
   }
 }
@@ -1095,7 +1095,7 @@ nav {
 
   .map-person {
     width: 18%;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .person-smith {
@@ -1129,7 +1129,7 @@ nav {
     top: 9%;
 
     > strong {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 
@@ -1158,7 +1158,7 @@ nav {
   }
 
   .travel-eyebrow {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .travel-sections h2 {
@@ -1366,7 +1366,7 @@ nav {
   }
 
   .account-banner-copy p {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .account-banner-actions {
@@ -1377,7 +1377,7 @@ nav {
   .account-action {
     min-height: 38px;
     padding: 0 15px;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 

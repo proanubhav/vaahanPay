@@ -1,0 +1,27 @@
+<div class="workspace">
+  <aside class="sidebar">
+    <a routerLink="/admin/users" class="brand">Vaahan<span>Pay</span></a>
+    <span class="workspace-label">ADMIN WORKSPACE</span>
+    <nav aria-label="Admin navigation">
+      <a routerLink="/admin/users" routerLinkActive="selected"
+        >Registered users <span>→</span></a
+      >
+    </nav>
+    <a routerLink="/" class="website-link">← View website</a>
+  </aside>
+  <div class="workspace-body">
+    <header class="topbar">
+      <span>Administration</span>
+      <div>
+        <span>{{ api.admin()?.name || "Administrator" }}</span
+        ><button (click)="logout()" [disabled]="busy()">
+          {{ busy() ? "Signing out…" : "Sign out" }}
+        </button>
+      </div>
+    </header>
+    @if (error()) {
+      <p class="error shell-error" role="alert">{{ error() }}</p>
+    }
+    <main class="content"><router-outlet /></main>
+  </div>
+</div>
